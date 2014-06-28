@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140628183840) do
+ActiveRecord::Schema.define(version: 20140628190517) do
+
+  create_table "issues", force: true do |t|
+    t.text     "title"
+    t.text     "text"
+    t.integer  "author_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "issues", ["author_id"], name: "index_issues_on_author_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
