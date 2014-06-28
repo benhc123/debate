@@ -136,13 +136,3 @@ If you make improvements to this application, please share with others.
 If you add functionality to this application, create an alternative
 implementation, or build an application that is similar, please contact
 me and I’ll add a note to the README so that others can find your work.
-
-Credits
--------
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-
-License
--------
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
