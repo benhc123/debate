@@ -17,6 +17,9 @@ gem 'pundit'
 gem 'sendgrid'
 gem 'simple_form'
 gem 'therubyracer', :platform=>:ruby
+
+gem 'thumbs_up'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
