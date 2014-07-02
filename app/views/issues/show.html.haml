@@ -1,15 +1,32 @@
-%p#notice= notice
+.content
+  %p#notice= notice
 
-%p
-  %b Title:
-  = @issue.title
-%p
-  %b Text:
-  = @issue.text
-%p
-  %b Author:
-  = @issue.author.display
+  .row
+    %h1.col-xs-11= @issue.title
+    .col-xs-1
+      = link_to edit_issue_path(@issue), { class: [:btn, :'btn-default'], title: 'Edit' } do
+        %i.glyphicon.glyphicon-edit
 
-= link_to 'Edit', edit_issue_path(@issue)
-\|
-= link_to 'Back', issues_path
+  .row
+    .col-xs-12
+      %span by
+      %span= link_to @issue.author.display, @issue.author
+    
+  #vote.row
+    .col-xs-6 Yea
+    .col-xs-6 Nay
+
+  .row
+    .col-xs-12= @issue.text
+
+  .row
+    .col-xs-6
+      %ul
+        - @issue.theses.for.each do |thesis|
+          %li= link_to thesis.summary, thesis
+    .col-xs-6
+      %ul
+        - @issue.theses.against.each do |thesis|
+          %li= link_to thesis.summary, thesis
+    
+      
