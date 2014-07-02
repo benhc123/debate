@@ -12,15 +12,15 @@
 
   - @issues.each do |issue|
     %tr
-      %tr
-        .upvote link_to '⇧', upvote_issue_path issue
-        .downvote link_to '⇩', downvote_issue_path issue
+      %td
+        .vote.up= link_to '⇧', upvote_issue_path(issue), class: current_user.voted_up_on?(issue) ? 'selected' : '', method: :post
+        .vote.down= link_to '⇩', downvote_issue_path(issue), class: current_user.voted_down_on?(issue) ? 'selected' : '', method: :post
       %td= issue.title
       %td= issue.text
-      %td= issue.author
+      %td= issue.author.display
       %td= link_to 'Show', issue
       %td= link_to 'Edit', edit_issue_path(issue)
-      %td= link_to 'Destroy', issue, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= link_to 'Destroy', issue, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 

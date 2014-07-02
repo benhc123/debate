@@ -1,5 +1,5 @@
 class IssuesController < ApplicationController
-  before_action :set_issue, only: [:show, :edit, :update, :destroy]
+  before_action :set_issue, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
 
   # GET /issues
   # GET /issues.json
@@ -15,6 +15,7 @@ class IssuesController < ApplicationController
   # GET /issues/new
   def new
     @issue = Issue.new
+    authorize @issue
   end
 
   # GET /issues/1/edit
@@ -25,6 +26,7 @@ class IssuesController < ApplicationController
   # POST /issues.json
   def create
     @issue = Issue.new(issue_params)
+    @issue.author = current_user
 
     respond_to do |format|
       if @issue.save
@@ -59,6 +61,16 @@ class IssuesController < ApplicationController
       format.html { redirect_to issues_url, notice: 'Issue was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def upvote
+    @issue.liked_by current_user
+    redirect_to :root
+  end
+
+  def downvote
+    @issue.disliked_by current_user
+    redirect_to :root
   end
 
   private
