@@ -17,6 +17,7 @@ gem 'sendgrid'
 gem 'simple_form'
 gem 'therubyracer', :platform=>:ruby
 gem 'pg'
+gem 'figaro'
 
 gem 'acts_as_votable'
 
