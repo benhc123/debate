@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140702180847) do
+ActiveRecord::Schema.define(version: 20140702181236) do
 
   create_table "issues", force: true do |t|
     t.text     "title"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20140702180847) do
     t.integer  "author_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "position"
   end
 
   add_index "theses", ["author_id"], name: "index_theses_on_author_id"
