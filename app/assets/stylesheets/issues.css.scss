@@ -2,6 +2,19 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#issues {
+    list-style: none;
+    
+    .title {
+        font-size: 20px;
+        text-indent: -1em;
+        
+        a {
+            display: block;
+        }
+    }    
+}
+
 .vote .selected {
     color: red;
 }
@@ -34,7 +47,8 @@
     }
 }
 
-#text {
+#text, .text {
     border: 1px solid #222;
     margin: 1em;
+    padding: .5em 1em;
 }
