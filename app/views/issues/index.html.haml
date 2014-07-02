@@ -1,26 +1,19 @@
-%h1 Listing issues
+.content
+  %h1 Issues
 
-%table
-  %tr
-    %th
-    %th Title
-    %th Text
-    %th Author
-    %th
-    %th
-    %th
-
-  - @issues.each do |issue|
-    %tr
-      %td
-        .vote.up= link_to '⇧', upvote_issue_path(issue), class: current_user.voted_up_on?(issue) ? 'selected' : '', method: :post
-        .vote.down= link_to '⇩', downvote_issue_path(issue), class: current_user.voted_down_on?(issue) ? 'selected' : '', method: :post
-      %td= issue.title
-      %td= issue.text
-      %td= issue.author.display
-      %td= link_to 'Show', issue
-      %td= link_to 'Edit', edit_issue_path(issue)
-      %td= link_to 'Destroy', issue, method: :delete, data: { confirm: 'Are you sure?' }
+  %ol
+    - @issues.each do |issue|
+      %li.row
+        .col-xs-1
+          .vote.up= link_to '⇧', upvote_issue_path(issue), class: current_user.voted_up_on?(issue) ? 'selected' : '', method: :post
+          .vote.down= link_to '⇩', downvote_issue_path(issue), class: current_user.voted_down_on?(issue) ? 'selected' : '', method: :post
+        .col-xs-10
+          = link_to issue.title, issue
+          = link_to issue.author.display, issue.author
+          .text= issue.text
+        .col-xs-1
+          = link_to edit_issue_path(issue), { class: [:btn, :'btn-default'], title: 'Edit' } do
+            %i.glyphicon.glyphicon-edit
 
 %br
 
