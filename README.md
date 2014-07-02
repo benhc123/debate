@@ -8,10 +8,13 @@ The basic concept is laid out in a little more detail [in the wiki](https://gith
 Installation
 ------------
 
-# Locally
+# Both
 
 - `git clone https://github.com/TheFuturistParty/debate.git`
 - `cd debate`
+
+# Locally
+
 - `bundle install`
 - `rake db:create db:migrate db:seed`
 - `rails s`
@@ -20,7 +23,16 @@ Installation
 
 - `heroku create app dbate`
 - `heroku addons:add heroku-postgresql`
+- `heroku config:add DOMAIN_NAME='dbate.herokuapp.com'
+- `git push heroku master`
+- `heroku config:add ADMIN_NAME='admin'`
+- `heroku config:add ADMIN_EMAIL='root@futuristparty.org' ADMIN_PASSWORD='secret'`
+- `heroku run rake db:migrate db:seed`
 
+If you change anything, it has to be precompiled before it is sent to Heroku.
+
+- `RAILS_ENV=production rake assets:precompile`
+- `git add -A`
 
 Contributing
 ------------
