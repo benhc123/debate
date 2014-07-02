@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Issue:
+  = @thesis.issue
+%p
+  %b Summary:
+  = @thesis.summary
+%p
+  %b Text:
+  = @thesis.text
+%p
+  %b Author:
+  = @thesis.author
+
+= link_to 'Edit', edit_thesis_path(@thesis)
+\|
+= link_to 'Back', theses_path

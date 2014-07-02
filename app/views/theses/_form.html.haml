@@ -1,0 +1,11 @@
+= simple_form_for(@thesis) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.association :issue
+    = f.input :summary
+    = f.input :text
+    = f.association :author
+
+  .form-actions
+    = f.button :submit

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :theses
+
   resources :issues do
     member do
       post :upvote
