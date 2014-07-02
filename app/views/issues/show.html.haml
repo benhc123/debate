@@ -1,4 +1,4 @@
-.content
+.container
   %p#notice= notice
 
   .row
@@ -8,16 +8,18 @@
         %i.glyphicon.glyphicon-edit
 
   .row
-    .col-xs-12
+    .col-xs-1
+      %a{ 'data-toggle' => :collapse, 'data-parent' => '#accordion', href: '#text' } +
+    .col-xs-11
       %span by
       %span= link_to @issue.author.display, @issue.author
-    
+
+  #text.row.collapse
+    .col-xs-12= @issue.text
+  
   #vote.row
     .col-xs-6 Yea
     .col-xs-6 Nay
-
-  .row
-    .col-xs-12= @issue.text
 
   .row
     .col-xs-6
@@ -26,7 +28,7 @@
           %li= link_to thesis.summary, thesis
     .col-xs-6
       %ul
-        - @issue.theses.against.each do |thesis|
+        - @issue.theses.where(position: :against).each do |thesis|
           %li= link_to thesis.summary, thesis
     
       
