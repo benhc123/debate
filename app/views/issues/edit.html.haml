@@ -1,7 +1,7 @@
-%h1 Editing issue
+.container
+  %h1 Editing Issue
 
-= render 'form'
+  = render 'form'
 
-= link_to 'Show', @issue
-\|
-= link_to 'Back', issues_path
+  = link_to 'Show', @issue, class: [:btn, :'btn-default']
+  = link_to 'Back', issues_path, class: [:btn, :'btn-default']

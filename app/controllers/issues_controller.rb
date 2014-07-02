@@ -1,5 +1,5 @@
 class IssuesController < ApplicationController
-  before_action :set_issue, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
+  before_action :set_issue, only: [:show, :edit, :update, :destroy, :upvote, :downvote, :voteyea, :votenay]
 
   # GET /issues
   # GET /issues.json
@@ -64,13 +64,23 @@ class IssuesController < ApplicationController
   end
 
   def upvote
-    @issue.liked_by current_user
+    @issue.liked_by current_user, role: :visibility
     redirect_to :root
   end
 
   def downvote
-    @issue.disliked_by current_user
+    @issue.disliked_by current_user, role: :visibility
     redirect_to :root
+  end
+
+  def voteyea
+    @issue.liked_by current_user, role: :approval
+    redirect_to @issue
+  end
+
+  def votenay
+    @issue.disliked_by current_user, role: :approval
+    redirect_to @issue
   end
 
   private

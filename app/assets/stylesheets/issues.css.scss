@@ -5,3 +5,36 @@
 .vote .selected {
     color: red;
 }
+
+#vote {
+    text-align: center;
+    font-size: 25px;
+
+    a {
+        display: block;
+        padding: 1em;
+        color: white;
+    }
+    
+    a:hover {
+        background-color: yellow;
+        color: black;
+    }
+
+    #yea {
+        background-color: green;
+    }
+
+    #nay {
+        background-color: red;
+    }
+
+    .selected:before {
+        content: '✔ ';
+    }
+}
+
+#text {
+    border: 1px solid #222;
+    margin: 1em;
+}
