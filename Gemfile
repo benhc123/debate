@@ -18,7 +18,7 @@ gem 'sendgrid'
 gem 'simple_form'
 gem 'therubyracer', :platform=>:ruby
 
-gem 'thumbs_up'
+gem 'acts_as_votable'
 
 group :development do
   gem 'better_errors'
