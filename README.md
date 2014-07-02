@@ -28,7 +28,7 @@ Installation
 - `heroku config:add ADMIN_NAME='admin'`
 - `heroku config:add ADMIN_EMAIL='root@futuristparty.org' ADMIN_PASSWORD='secret'`
 - `heroku run rake db:migrate db:seed`
-- `heroku config:add DEVISE_KEY='10602d293b43603c67238fa421ac049d2ec991588b67c8821f1c4ac0bc9ca979484be27fe4f1cd27578f7a26c8dc57ae67eaf877cf8fc0e722ae95ea5b8e543f'`
+- `rake figaro:heroku`
 
 If you change anything, it has to be precompiled before it is sent to Heroku.
 
