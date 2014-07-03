@@ -1,7 +1,6 @@
-%h1 Editing thesis
+%h1 Editing Thesis
 
 = render 'form'
 
-= link_to 'Show', @thesis
-\|
-= link_to 'Back', theses_path
+= link_to 'Show', @thesis, class: [:btn, :'btn-default']
+= link_to 'Back', theses_path, class: [:btn, :'btn-default']
