@@ -14,6 +14,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   def display
-    name || email
+    name || 'Anon'
   end
 end
