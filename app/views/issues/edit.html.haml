@@ -3,5 +3,6 @@
 
   = render 'form'
 
+  = link_to 'Delete', @issue, method: :delete, class: [:btn, :'btn-danger'], data: { confirm: 'Are you sure?' }
   = link_to 'Show', @issue, class: [:btn, :'btn-default']
   = link_to 'Back', issues_path, class: [:btn, :'btn-default']

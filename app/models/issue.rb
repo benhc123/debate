@@ -5,6 +5,7 @@ class Issue < ActiveRecord::Base
   has_many :theses
 
   validates :author, presence: true
+  validates :title, presence: true
 
   acts_as_votable
 end
