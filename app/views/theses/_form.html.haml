@@ -3,6 +3,7 @@
 
   .form-inputs
     = f.association :issue
+    = f.input :position, collection: Issue.positions
     = f.input :summary
     = f.input :text
 

@@ -15,6 +15,7 @@ class ThesesController < ApplicationController
   # GET /theses/new
   def new
     @thesis = Thesis.new
+    @thesis.issue = Issue.find params[:issue]
   end
 
   # GET /theses/1/edit
@@ -25,6 +26,8 @@ class ThesesController < ApplicationController
   # POST /theses.json
   def create
     @thesis = Thesis.new(thesis_params)
+
+    @thesis.author = current_user
 
     respond_to do |format|
       if @thesis.save
@@ -69,6 +72,6 @@ class ThesesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def thesis_params
-      params.require(:thesis).permit(:issue_id, :summary, :text, :author_id)
+      params.require(:thesis).permit(:issue_id, :summary, :text, :author_id, :position)
     end
 end

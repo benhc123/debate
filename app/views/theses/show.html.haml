@@ -1,18 +1,21 @@
 %p#notice= notice
 
-%p
-  %b Issue:
-  = @thesis.issue
-%p
-  %b Summary:
-  = @thesis.summary
-%p
-  %b Text:
-  = @thesis.text
-%p
-  %b Author:
-  = @thesis.author
+%ul
+  %li
+    %b Issue:
+    = link_to @thesis.issue.title, @thesis.issue
+  %li
+    %b Position:
+    = @thesis.position
+  %li
+    %b Summary:
+    = @thesis.summary
+  %li
+    %b Text:
+    = @thesis.text
+  %li
+    %b Author:
+    = link_to @thesis.author.display, @thesis.author
 
-= link_to 'Edit', edit_thesis_path(@thesis)
-\|
-= link_to 'Back', theses_path
+= link_to 'Edit', edit_thesis_path(@thesis), class: [:btn, :'btn-default']
+= link_to 'Back', theses_path, class: [:btn, :'btn-default']
