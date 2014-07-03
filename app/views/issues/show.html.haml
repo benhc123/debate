@@ -11,8 +11,9 @@
       %span by
       %span= link_to @issue.author.display, @issue.author
 
-  #text.row
-    .col-xs-12= @issue.text
+  - if @issue.text
+    #text.row
+      .col-xs-12= @issue.text
   
   #vote.row
     #yea.col-xs-6= link_to 'Yea', voteyea_issue_path(@issue), class: current_user.try(:voted_up_on?, @issue, vote_scope: :approval) ? 'selected' : '', method: :post
