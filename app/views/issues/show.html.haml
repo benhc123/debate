@@ -1,11 +1,12 @@
-.container
+#issue.container
   %p#notice= notice
 
   .row
     %h1.col-xs-11= link_to @issue.title, @issue
-    .col-xs-1
-      = link_to edit_issue_path(@issue), { class: [:btn, :'btn-default'], title: 'Edit' } do
-        %i.glyphicon.glyphicon-edit
+    .control.col-xs-1
+      - if policy(@issue).update?
+        = link_to edit_issue_path(@issue), { class: [:btn, :'btn-default'], title: 'Edit' } do
+          %i.glyphicon.glyphicon-edit
   .row
     .col-xs-12
       %span by
@@ -19,7 +20,7 @@
     #yea.col-xs-6= link_to 'Yea', voteyea_issue_path(@issue), class: current_user.try(:voted_up_on?, @issue, vote_scope: :approval) ? 'selected' : '', method: :post
     #nay.col-xs-6= link_to 'Nay', votenay_issue_path(@issue), class: current_user.try(:voted_down_on?, @issue, vote_scope: :approval) ? 'selected' : '', method: :post
 
-  .row
+  #theses.row
     .col-xs-6
       %ul
         - @issue.theses.where(position: Issue.positions[:for]).each do |thesis|
