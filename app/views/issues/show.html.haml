@@ -23,7 +23,6 @@
     #yea.col-xs-6= link_to 'Yea', voteyea_issue_path(@issue), class: current_user.voted_up_on?(@issue, role: :approval) ? 'selected' : '', method: :post
     #nay.col-xs-6= link_to 'Nay', votenay_issue_path(@issue), class: current_user.voted_down_on?(@issue, role: :approval) ? 'selected' : '', method: :post
 
--#
   .row
     .col-xs-6
       %ul
@@ -31,7 +30,7 @@
           %li= link_to thesis.summary, thesis
     .col-xs-6
       %ul
-        - @issue.theses.where(position: :against).each do |thesis|
+        -# @issue.theses.where(position: :against).each do |thesis|
           %li= link_to thesis.summary, thesis
     
       
