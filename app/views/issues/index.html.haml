@@ -5,8 +5,8 @@
     - @issues.each do |issue|
       %li.row
         .col-xs-1
-          .vote.up= link_to '⇧', upvote_issue_path(issue), class: current_user.voted_up_on?(issue, role: :visibility) ? 'selected' : '', method: :post
-          .vote.down= link_to '⇩', downvote_issue_path(issue), class: current_user.voted_down_on?(issue, role: :visibility) ? 'selected' : '', method: :post
+          .vote.up= link_to '⇧', upvote_issue_path(issue), class: current_user.try(:voted_up_on?, issue, role: :visibility) ? 'selected' : '', method: :post
+          .vote.down= link_to '⇩', downvote_issue_path(issue), class: current_user.try(:voted_down_on?, issue, role: :visibility) ? 'selected' : '', method: :post
         .col-xs-10
           .title= link_to issue.title, issue
           - if issue.text.try :present?
