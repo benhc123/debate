@@ -1,25 +1,24 @@
-%h1 Listing theses
+.container
+  %h1 Theses
 
-%table
-  %tr
-    %th Issue
-    %th Summary
-    %th Text
-    %th Author
-    %th
-    %th
-    %th
-
-  - @theses.each do |thesis|
+  %table.table
     %tr
-      %td= thesis.issue
-      %td= thesis.summary
-      %td= thesis.text
-      %td= thesis.author
-      %td= link_to 'Show', thesis
-      %td= link_to 'Edit', edit_thesis_path(thesis)
-      %td= link_to 'Destroy', thesis, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %th Issue
+      %th Summary
+      %th Text
+      %th Author
+      %th
+      %th
+      %th
 
-%br
+    - @theses.each do |thesis|
+      %tr
+        %td= link_to thesis.issue.title, thesis.issue
+        %td= thesis.summary
+        %td= thesis.text
+        %td= link_to thesis.author.display, thesis.author
+        %td= link_to 'Show', thesis
+        %td= link_to 'Edit', edit_thesis_path(thesis)
+        %td= link_to 'Destroy', thesis, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
-= link_to 'New Thesis', new_thesis_path
+  = link_to 'New Thesis', new_thesis_path, class: [:btn, :'btn-default']

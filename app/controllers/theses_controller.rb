@@ -15,7 +15,7 @@ class ThesesController < ApplicationController
   # GET /theses/new
   def new
     @thesis = Thesis.new
-    @thesis.issue = Issue.find params[:issue]
+    @thesis.issue = Issue.find params[:issue] if params[:issue]
   end
 
   # GET /theses/1/edit
