@@ -64,22 +64,22 @@ class IssuesController < ApplicationController
   end
 
   def upvote
-    @issue.liked_by current_user, role: :visibility
+    @issue.liked_by current_user, vote_scope: :visibility
     redirect_to :root
   end
 
   def downvote
-    @issue.disliked_by current_user, role: :visibility
+    @issue.disliked_by current_user, vote_scope: :visibility
     redirect_to :root
   end
 
   def voteyea
-    @issue.liked_by current_user, role: :approval
+    @issue.liked_by current_user, vote_scope: :approval
     redirect_to @issue
   end
 
   def votenay
-    @issue.disliked_by current_user, role: :approval
+    @issue.disliked_by current_user, vote_scope: :approval
     redirect_to @issue
   end
 

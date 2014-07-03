@@ -20,8 +20,8 @@
     .col-xs-12= @issue.text
   
   #vote.row
-    #yea.col-xs-6= link_to 'Yea', voteyea_issue_path(@issue), class: current_user.try(:voted_up_on?, @issue, role: :approval) ? 'selected' : '', method: :post
-    #nay.col-xs-6= link_to 'Nay', votenay_issue_path(@issue), class: current_user.try(:voted_down_on?, @issue, role: :approval) ? 'selected' : '', method: :post
+    #yea.col-xs-6= link_to 'Yea', voteyea_issue_path(@issue), class: current_user.try(:voted_up_on?, @issue, vote_scope: :approval) ? 'selected' : '', method: :post
+    #nay.col-xs-6= link_to 'Nay', votenay_issue_path(@issue), class: current_user.try(:voted_down_on?, @issue, vote_scope: :approval) ? 'selected' : '', method: :post
 
   .row
     .col-xs-6

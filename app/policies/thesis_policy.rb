@@ -1,9 +1,9 @@
-class IssuePolicy
+class ThesisPolicy
   attr_reader :user, :issue
 
-  def initialize(user, issue)
+  def initialize(user, thesis)
     @user = user
-    @issue = issue
+    @thesis = thesis
   end
 
   def new?
@@ -19,6 +19,6 @@ class IssuePolicy
   end
 
   def author_or_admin
-    @user and ( @issue.author == @user or @user.admin? )
+    @user and ( @thesis.author == @user or @user.admin? )
   end
 end
