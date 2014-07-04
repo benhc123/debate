@@ -1,0 +1,6 @@
+.container
+  %h3= @user.display
+
+  %ul
+    - @user.votes.each do |vote|
+      %li= vote
