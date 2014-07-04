@@ -22,11 +22,11 @@
 
   #theses.row
     .col-xs-6
-      %ul
+      %ol
         - @issue.theses.where(position: Issue.positions[:for]).each do |thesis|
           %li= link_to thesis.summary, thesis
     .col-xs-6
-      %ul
+      %ol
         - @issue.theses.where(position: Issue.positions[:against]).each do |thesis|
           %li= link_to thesis.summary, thesis
 

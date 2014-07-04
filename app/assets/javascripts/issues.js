@@ -1,5 +1,7 @@
 $( function() {
-    $('#theses ol').sortable( {
-        connectWith: ".connectedSortable"
-    } ).disableSelection()
+    $('#theses ol').sortable()
+    // {
+    //    connectWith: ".connectedSortable"
+    //} )
+        .disableSelection()
 } )
