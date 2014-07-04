@@ -16,6 +16,8 @@ class ThesesController < ApplicationController
   def new
     @thesis = Thesis.new
     @thesis.issue = Issue.find params[:issue] if params[:issue]
+
+    authorize @thesis
   end
 
   # GET /theses/1/edit
@@ -43,6 +45,8 @@ class ThesesController < ApplicationController
   # PATCH/PUT /theses/1
   # PATCH/PUT /theses/1.json
   def update
+    authorize @thesis
+
     respond_to do |format|
       if @thesis.update(thesis_params)
         format.html { redirect_to @thesis, notice: 'Thesis was successfully updated.' }
