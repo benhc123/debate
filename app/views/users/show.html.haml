@@ -1,6 +1,10 @@
-.container
+#user.container
   %h3= @user.display
 
-  %ul
-    - @user.votes.each do |vote|
-      %li= vote
+  %ul#votes
+    - @user.votes.where(vote_scope: :approval).each do |vote|
+      %li.row
+        .col-xs-1
+          = image_tag vote.vote_flag ? 'for.svg' : 'against.svg', class: :icon
+        .col-xs-11
+          = link_to vote.votable.title, vote.votable

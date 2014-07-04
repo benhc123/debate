@@ -1,0 +1,23 @@
+#user {
+    #votes {
+        list-style: none;
+        margin: 0;
+
+        li {
+            margin-bottom: .75em;
+        }
+
+        li:hover {
+            background-color: orange;
+        }
+        
+        a {
+            display: block;
+            padding: .25em .5em;
+        }
+
+        .icon {
+            width: 20px;
+        }
+    }
+}

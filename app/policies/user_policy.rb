@@ -6,6 +6,10 @@ class UserPolicy
     @user = model
   end
 
+  def edit?
+    @current_user.admin? or @current_user == @user
+  end
+
   def index?
     @current_user.admin?
   end
