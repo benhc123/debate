@@ -2,7 +2,7 @@
 %nav.navbar.navbar-default.navbar-fixed-top
   .container
     .navbar-header
-      %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+      %button.navbar-toggle{ 'data-target' => '.navbar-collapse', 'data-toggle' => 'collapse', type: 'button' }
         %span.sr-only Toggle navigation
         %span.icon-bar
         %span.icon-bar
@@ -10,4 +10,13 @@
       = link_to image_tag('debate.svg'), root_path, class: [:icon, :'navbar-brand']
     .collapse.navbar-collapse
       %ul.nav.navbar-nav
-        = render 'layouts/navigation_links'
+        - if user_signed_in?
+          %li= link_to 'Account', edit_user_registration_path
+        - if policy(User).index?
+          %li= link_to 'Users', users_path
+        - if user_signed_in?
+          %li= link_to 'Sign Out', destroy_user_session_path, method: :delete
+        - else
+          %li= link_to 'Sign In', new_user_session_path
+          %li= link_to 'Sign Up', new_user_registration_path
+
