@@ -20,6 +20,7 @@ gem 'pg'
 gem 'figaro'
 
 gem 'acts_as_votable'
+gem 'acts-as-taggable-on'
 
 group :development do
   gem 'better_errors'
