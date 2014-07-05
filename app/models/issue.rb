@@ -8,4 +8,5 @@ class Issue < ActiveRecord::Base
   validates :title, presence: true
 
   acts_as_votable
+  acts_as_ordered_taggable
 end
