@@ -15,6 +15,7 @@
         - if policy(User).index?
           %li= link_to 'Users', users_path
         - if user_signed_in?
+          %li= link_to 'Delegate', delegate_user_path(current_user)
           %li= link_to 'Sign Out', destroy_user_session_path, method: :delete
         - else
           %li= link_to 'Sign In', new_user_session_path

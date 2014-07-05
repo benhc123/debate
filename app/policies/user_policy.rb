@@ -25,4 +25,8 @@ class UserPolicy
   def destroy?
     @current_user != @user and @current_user.admin?
   end
+
+  def delegate?
+    @current_user.admin? or @current_user == @user
+  end
 end

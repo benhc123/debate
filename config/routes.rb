@@ -12,5 +12,10 @@ Rails.application.routes.draw do
 
   root :to => 'issues#index'
   devise_for :users, path_names: { sign_in: 'login', sign_out: 'logout' }
-  resources :users
+
+  resources :users do
+    member do
+      get :delegate
+    end
+  end
 end
