@@ -1,6 +1,8 @@
 #issue.container
   .row
-    %h1.col-xs-11= link_to @issue.title, @issue
+    %h1.col-xs-11
+      = link_to '<', issues_path, class: [:btn, :'btn-default']
+      = link_to @issue.title, @issue
     .control.col-xs-1
       - if policy(@issue).update?
         = link_to edit_issue_path(@issue), { class: [:btn, :'btn-default'], title: 'Edit' } do
