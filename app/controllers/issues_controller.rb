@@ -64,33 +64,40 @@ class IssuesController < ApplicationController
   end
 
   def upvote
-    @issue.liked_by current_user, vote_scope: :visibility
-    redirect_to :root
+    do_vote true, :visibility
   end
 
   def downvote
-    @issue.disliked_by current_user, vote_scope: :visibility
-    redirect_to :root
+    do_vote false, :visibility
+  end
+  
+  def vote vote, scope
+    @issue.vote_by voter: current_user, vote: vote, vote_scope: scope
+    if not @issue.vote_registered?
+      @issue.unvote_by current_user, vote_scope: scope
+    end
   end
 
   def voteyea
-    @issue.liked_by current_user, vote_scope: :approval
-    redirect_to @issue
+    do_vote true, :approval
   end
 
   def votenay
-    @issue.disliked_by current_user, vote_scope: :approval
-    redirect_to @issue
+    do_vote false, :approval
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_issue
-      @issue = Issue.find(params[:id])
-    end
+  
+  def set_issue
+    @issue = Issue.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def issue_params
-      params.require(:issue).permit(:title, :text, :author_id)
-    end
+  def issue_params
+    params.require(:issue).permit(:title, :text, :author_id)
+  end
+  
+  def do_vote *args
+    vote *args
+    redirect_to :back
+  end
 end
