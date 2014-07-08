@@ -132,6 +132,14 @@
 
     #forms {
         margin-top: 1.5em;
+
+        p {
+            font-size: 15px;
+        }
+
+        .text {
+            margin-left: 2em;
+        }
     }
 }
 
@@ -185,6 +193,16 @@
     .html a {
         color: blue;
     }
+
+    textarea {
+        height: 12em;
+        margin-bottom: .5em;
+    }
+    
+    .controls {
+        text-align: right;
+        padding-right: 5%;
+    }    
 }
 
 #theses {
@@ -201,5 +219,10 @@
         padding: .25em .5em;
         background-color: white;
         font-size: 13px;
+    }
+
+    .add {
+        display: block;
+        font-weight: bold;
     }
 }

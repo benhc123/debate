@@ -15,15 +15,12 @@
   #text
     .row
       .html.col-xs-12
-        - if not @issue.text.try(:present?)
-          %i.glyphicon.glyphicon-edit
-          
     .edit{ style: 'display: none' }
       = form_for @issue do |f|
         .row
           .col-xs-12= f.text_area :text, class: 'form-control'
         .row
-          .col-xs-12
+          .controls.col-xs-12
             = link_to 'Cancel', '#', class: [:btn, :'btn-default', :cancel]
             = f.submit 'Save', class: [:btn, :'btn-success']
 
@@ -38,25 +35,34 @@
           %li.thesis
             = radio_button_tag :thesis, thesis.id
             = label_tag "thesis_#{thesis.id}", thesis.summary
+        %li.thesis
+          = link_to new_thesis_path(issue: @issue, position: Issue.positions[:for]), class: [:btn, :'btn-default', :add] do
+            %i.glyphicon.glyphicon-plus-sign
     .col-xs-6
       %ol
         - @issue.theses.where(position: Issue.positions[:against]).each do |thesis|
           %li.thesis
             = radio_button_tag :thesis, thesis.id
             = label_tag "thesis_#{thesis.id}", thesis.summary
-
-  .row
-    .col-xs-12= link_to 'New Thesis', new_thesis_path(issue: @issue), class: [:btn, :'btn-default']
+        %li.thesis
+          = link_to new_thesis_path(issue: @issue, position: Issue.positions[:against]), class: [:btn, :'btn-default', :add] do
+            %i.glyphicon.glyphicon-plus-sign
 
   #forms
     - @issue.theses.each do |thesis|
       .thesis{ data: { id: thesis.id }, style: 'display: none' }
-        = form_for thesis do |f|
+        .html
           .row
-            .col-xs-10= f.text_field :summary, class: :'form-control'
-            .col-xs-2
-              = link_to 'Cancel', nil, class: [:btn, :'btn-default']
-              = f.submit 'Save', class: [:btn, :'btn-success']
+            %h2.col-xs-12= thesis.summary
           .row
-            .col-xs-12
-              = f.text_area :text, class: :'form-control'
+            .text.col-xs-12
+        .edit{ style: 'display: none' }
+          = form_for thesis do |f|
+            .row
+              .col-xs-10= f.text_field :summary, class: :'form-control'
+              .col-xs-2
+                = link_to 'Cancel', nil, class: [:btn, :'btn-default']
+                = f.submit 'Save', class: [:btn, :'btn-success']
+            .row
+              .col-xs-12
+                = f.text_area :text, class: :'form-control'

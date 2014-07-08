@@ -16,6 +16,7 @@ class ThesesController < ApplicationController
   def new
     @thesis = Thesis.new
     @thesis.issue = Issue.find params[:issue] if params[:issue]
+    @thesis.position = params[:position] if params[:position]
 
     authorize @thesis
   end
