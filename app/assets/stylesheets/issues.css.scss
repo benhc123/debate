@@ -91,6 +91,14 @@
 }
 
 #issue {
+    h1 a {
+        padding: .25em .1em;
+    }
+
+    h1 .btn {
+        padding: .25em .5em;
+    }
+
     .control {
         margin-top: 2em;
     }
@@ -165,6 +173,10 @@
     border: 1px solid #222;
     margin: 1em;
     padding: .5em 1em;
+
+    p {
+        font-size: 15px;
+    }
 
     .html a {
         color: blue;
