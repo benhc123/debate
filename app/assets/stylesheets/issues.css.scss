@@ -62,6 +62,31 @@
             border-top-color: red;
         }
     }
+
+    #approval {
+        .score {
+            width: 3em;
+            display: inline-block;
+            border: 2px solid #333;
+            border-radius: 10px;
+            height: 4em;
+            padding: .5em;
+            font-weight: bold;
+
+            .icon {
+                max-width: 100%;
+            }
+            
+            .count {
+                text-align: center;
+            }
+        }
+
+        .score.selected {
+            background-color: blue;
+            color: white;
+        }
+    }
 }
 
 #issue {
@@ -70,8 +95,12 @@
     }
 }
 
-.vote .selected {
-    color: red;
+.vote {
+    text-align: center;
+
+    .selected {
+        color: red;
+    }
 }
 
 #vote {
