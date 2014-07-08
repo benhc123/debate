@@ -28,18 +28,26 @@
     #yea.col-xs-6= link_to 'Yea', voteyea_issue_path(@issue), class: current_user.try(:voted_up_on?, @issue, vote_scope: :approval) ? :selected : nil, method: :post
     #nay.col-xs-6= link_to 'Nay', votenay_issue_path(@issue), class: current_user.try(:voted_down_on?, @issue, vote_scope: :approval) ? :selected : nil, method: :post
 
-  #theses.row
+  %form#theses.row
     .col-xs-6
       %ol
         - @issue.theses.where(position: Issue.positions[:for]).each do |thesis|
-          %li.thesis= link_to thesis.summary, thesis
+          %li.thesis
+            = radio_button_tag :thesis, thesis.id
+            = label_tag "thesis_#{thesis.id}", thesis.summary
     .col-xs-6
       %ol
         - @issue.theses.where(position: Issue.positions[:against]).each do |thesis|
-          %li.thesis= link_to thesis.summary, thesis
+          %li.thesis
+            = radio_button_tag :thesis, thesis.id do
+              = label_tag "thesis_#{thesis.id}", thesis.summary
 
   .row
     .col-xs-12= link_to 'Add Thesis', new_thesis_path(issue: @issue), class: [:btn, :'btn-default']
+  
+
+  - @issue.theses.each do |thesis|
+    .row
       
   #thesis.hide
     = form_for Thesis.new do |f|

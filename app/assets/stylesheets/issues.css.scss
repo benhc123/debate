@@ -94,6 +94,20 @@
     .control {
         margin-top: 2em;
     }
+
+    #theses {
+        input {
+            display: none;
+        }
+
+        label {
+            display: block;
+        }
+
+        input:checked {
+            display: inline;
+        }
+    }
 }
 
 .vote {
