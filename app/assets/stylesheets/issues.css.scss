@@ -32,6 +32,36 @@
     .explanation {
         margin: 1em;
     }
+
+    .votes {
+        font-weight: bold;
+        font-size: 25px;
+
+        a {
+            display: block;
+            padding: .1em .25em;
+        }
+    }
+
+    .tooltip.right.positive {
+        .tooltip-inner {
+            background-color: green;
+        }
+
+        .tooltip-arrow {
+            border-top-color: green;
+        }
+    }
+
+    .tooltip.right.negative {
+        .tooltip-inner {
+            background-color: red;
+        }
+
+        .tooltip-arrow {
+            border-top-color: red;
+        }
+    }
 }
 
 #issue {

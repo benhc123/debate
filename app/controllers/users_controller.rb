@@ -30,8 +30,8 @@ class UsersController < ApplicationController
   end
 
   def delegate
-    user = User.find(params[:id])
-    authorize user
+    @user = User.find(params[:id])
+    authorize @user
   end
 
   private

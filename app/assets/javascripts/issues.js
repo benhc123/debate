@@ -4,4 +4,6 @@ $( function() {
     //    connectWith: ".connectedSortable"
     //} )
         .disableSelection()
+
+    $('[data-toggle="tooltip"]').tooltip()
 } )

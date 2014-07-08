@@ -4,8 +4,14 @@
   %ol#issues
     - @issues.each do |issue|
       %li.row
-        .col-xs-1
-          .vote.up= link_to '⇧', upvote_issue_path(issue), class: current_user.try(:voted_up_on?, issue, vote_scope: :visibility) ? 'selected' : '', method: :post
+        - upvotes = issue.get_likes(vote_scope: :visibility).size
+        - downvotes = issue.get_dislikes(vote_scope: :visibility).size
+        - votes = upvotes + downvotes
+        - interesting = votes > 0 ? ( 100 * ( upvotes - downvotes ) / votes ).round : 100
+        - title = "Interesting? #{upvotes} / #{downvotes} (#{interesting}%)"
+        - template = "<div class='tooltip #{interesting < 0 ? :negative : :positive}' role='tooltip'><div class='tooltip-arrow'></div><div class='tooltip-inner'></div></div>"
+        .votes.col-xs-1{ 'data-toggle' => 'tooltip', 'data-template' => template, title: title }
+          .vote.up= link_to '⇧', upvote_issue_path(issue), class: current_user.try(:voted_up_on?, issue, vote_scope: :visibility) ? 'selected' : '', method: :post 
           .vote.down= link_to '⇩', downvote_issue_path(issue), class: current_user.try(:voted_down_on?, issue, vote_scope: :visibility) ? 'selected' : '', method: :post
         .col-xs-8
           .title= link_to issue.title, issue
@@ -16,7 +22,7 @@
             %span by
             = link_to issue.author.display, issue.author
           .explanation.collapse{ id: "text-" + issue.id.to_s }= issue.text
-        #score.col-xs-1
+        #score.col-xs-1{ 'data-toggle' => 'tooltip', title: 'Approve?' }
           = issue.get_likes(vote_scope: :approval).size
           \/
           = issue.get_dislikes(vote_scope: :approval).size
