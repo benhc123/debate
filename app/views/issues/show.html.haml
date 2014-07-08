@@ -15,6 +15,9 @@
   #text
     .row
       .html.col-xs-12
+        - if not @issue.text.try(:present?)
+          %i.glyphicon.glyphicon-edit
+          
     .edit{ style: 'display: none' }
       = form_for @issue do |f|
         .row
@@ -47,7 +50,7 @@
 
   #forms
     - @issue.theses.each do |thesis|
-      .thesis
+      .thesis{ data: { id: thesis.id }, style: 'display: none' }
         = form_for thesis do |f|
           .row
             .col-xs-10= f.text_field :summary, class: :'form-control'

@@ -8,17 +8,30 @@
 
         $('[data-toggle="tooltip"]').tooltip()
         
-        $('#text .html').html( markdown.toHTML( $('#text textarea').val() ) )
+        var text = $('#text textarea').val()
+        $('#text .html').html( text.length == 0 ? '+' : markdown.toHTML( text ) )
         
-        $('#text').click( function() {
-            $(this).find( '.html' ).hide()
-            $(this).find( '.edit' ).show()
+        $('#text .html').click( function() {
+            var $text = $(this).parents( '#text' )
+            $text.find( '.html' ).hide()
+            $text.find( '.edit' ).show()
         } )
 
-        $('#text .cancel').click( function() {
+        $('#text .cancel').click( function( event ) {
             var $text = $(this).parents( '#text' )
+            console.log( 'click', $text.find( '.html' ) )
             $text.find( '.html' ).show()
             $text.find( '.edit' ).hide()
+            event.preventDefault()
+        } )
+
+        var $activeThesis
+        $('#theses').on( 'change', function() {
+            if( $activeThesis ) {
+                $activeThesis.hide()
+            }
+            $activeThesis = $("[data-id=" + $(this).find( 'input[type=radio]:checked' ).val() + "]")
+            $activeThesis.show()
         } )
     }
     
