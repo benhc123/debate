@@ -39,8 +39,8 @@
       %ol
         - @issue.theses.where(position: Issue.positions[:against]).each do |thesis|
           %li.thesis
-            = radio_button_tag :thesis, thesis.id do
-              = label_tag "thesis_#{thesis.id}", thesis.summary
+            = radio_button_tag :thesis, thesis.id
+            = label_tag "thesis_#{thesis.id}", thesis.summary
 
   .row
     .col-xs-12= link_to 'Add Thesis', new_thesis_path(issue: @issue), class: [:btn, :'btn-default']

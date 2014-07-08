@@ -96,16 +96,29 @@
     }
 
     #theses {
+        li {
+            padding: 0;
+            margin-bottom: .5em;
+        }
+
         input {
             display: none;
         }
 
         label {
             display: block;
+            font-size: 15px;
+            margin: 0;
+            padding: .25em .5em;
         }
 
-        input:checked {
-            display: inline;
+        label:hover {
+            background-color: #F5F5F5;
+        }
+
+        input:checked + label {
+            background-color: blue;
+            color: white;
         }
     }
 }
