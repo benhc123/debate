@@ -1,6 +1,4 @@
 #issue.container
-  %p#notice= notice
-
   .row
     %h1.col-xs-11= link_to @issue.title, @issue
     .control.col-xs-1
@@ -12,13 +10,21 @@
       %span by
       %span= link_to @issue.author.display, @issue.author
 
-  - if @issue.text.try :present?
-    #text.row
-      .col-xs-12= @issue.text
-  
+  #text
+    .row
+      .html.col-xs-12
+    .edit{ style: 'display: none' }
+      = form_for @issue do |f|
+        .row
+          .col-xs-12= f.text_area :text, class: 'form-control'
+        .row
+          .col-xs-12
+            = link_to 'Cancel', '#', class: [:btn, :'btn-default']
+            = f.submit 'Save', class: [:btn, :'btn-success']
+
   #vote.row
-    #yea.col-xs-6= link_to 'Yea', voteyea_issue_path(@issue), class: current_user.try(:voted_up_on?, @issue, vote_scope: :approval) ? 'selected' : '', method: :post
-    #nay.col-xs-6= link_to 'Nay', votenay_issue_path(@issue), class: current_user.try(:voted_down_on?, @issue, vote_scope: :approval) ? 'selected' : '', method: :post
+    #yea.col-xs-6= link_to 'Yea', voteyea_issue_path(@issue), class: current_user.try(:voted_up_on?, @issue, vote_scope: :approval) ? :selected : nil, method: :post
+    #nay.col-xs-6= link_to 'Nay', votenay_issue_path(@issue), class: current_user.try(:voted_down_on?, @issue, vote_scope: :approval) ? :selected : nil, method: :post
 
   #theses.row
     .col-xs-6
