@@ -20,4 +20,8 @@ footer {
 .icon {
     width: 50px;
     display: inline-block;
+
+    &:hover {
+        background-color: #F1F1F1;
+    }
 }
