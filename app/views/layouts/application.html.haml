@@ -1,9 +1,11 @@
 !!!
 %html
   %head
-    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
+    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
     %title= content_for?(:title) ? yield(:title) : 'Debate'
-    %meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'Debate'}"}
+    %meta{ name: 'description', content: content_for?(:description) ? yield(:description) : 'Debate' }
+    %meta{ name: 'google-site-verification', content: 'aOM3PY1zem0k_5FG3ZtCGrYE13mjzW77wMWVtLJj0Lc' }
+
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
