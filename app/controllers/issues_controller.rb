@@ -72,6 +72,8 @@ class IssuesController < ApplicationController
   end
   
   def vote vote, scope
+    authorize @issue
+
     @issue.vote_by voter: current_user, vote: vote, vote_scope: scope
     if not @issue.vote_registered?
       @issue.unvote_by current_user, vote_scope: scope

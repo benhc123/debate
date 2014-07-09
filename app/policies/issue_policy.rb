@@ -21,4 +21,10 @@ class IssuePolicy
   def author_or_admin
     @user and ( @issue.author == @user or @user.admin? )
   end
+
+  def vote?
+    @user
+  end
+
+  [:voteyea?, :votenay?, :upvote?, :downvote?].each{ |method| alias_method method, :vote? }
 end
