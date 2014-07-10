@@ -17,7 +17,7 @@ Installation
 5. `cd debate`
 6. `rvm install ruby-2.1.2`
 7. `bundle install`
-8. *optional* edit `config/secrets.yml' and change the admin credentials
+8. *optional* edit `config/secrets.yml` and change the admin credentials
 9. `rake db:create db:migrate db:seed`
 10. `rails s`
 11. `chrome http://localhost:3000`
