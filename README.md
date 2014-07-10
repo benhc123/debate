@@ -8,19 +8,24 @@ The basic concept is laid out in a little more detail [in the wiki](https://gith
 Installation
 ------------
 
-# Both
-
-- `git clone https://github.com/TheFuturistParty/debate.git`
-- `cd debate`
-
 # Locally
 
-- `bundle install`
-- `rake db:create db:migrate db:seed`
-- `rails s`
+1. `sudo apt-get install git`
+2. `git clone https://github.com/TheFuturistParty/debate.git`
+3. `curl -sSL https://get.rvm.io | bash`
+4. `source ~/.rvm/scripts/rvm`
+5. `cd debate`
+6. `rvm install ruby-2.1.2`
+7. `bundle install`
+8. *optional* edit `config/secrets.yml' and change the admin credentials
+9. `rake db:create db:migrate db:seed`
+10. `rails s`
+11. `chrome http://localhost:3000`
 
 # Heroku
 
+- `git clone https://github.com/TheFuturistParty/debate.git`
+- `cd debate`
 - `heroku create app dbate`
 - `heroku addons:add heroku-postgresql`
 - `heroku config:add DOMAIN_NAME='dbate.herokuapp.com'
