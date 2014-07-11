@@ -15,7 +15,8 @@ class UserPolicy
   end
 
   def show?
-    @current_user.admin? or @current_user == @user
+    # @current_user.admin? or @current_user == @user
+    @current_user
   end
 
   def update?
