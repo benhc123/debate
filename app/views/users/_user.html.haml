@@ -1,4 +1,5 @@
 %td= link_to user.display, user
+%td= user.email
 %td
   - if policy(user).edit?
     = form_for(user) do |f|
