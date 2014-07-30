@@ -34,7 +34,7 @@ class ThesesController < ApplicationController
 
     respond_to do |format|
       if @thesis.save
-        format.html { redirect_to @thesis, notice: 'Thesis was successfully created.' }
+        format.html { redirect_to @thesis.issue, notice: 'Thesis was successfully created.' }
         format.json { render :show, status: :created, location: @thesis }
       else
         format.html { render :new }
