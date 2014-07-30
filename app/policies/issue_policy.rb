@@ -11,7 +11,7 @@ class IssuePolicy
   end
 
   def update?
-     author_or_admin
+     @user
   end
 
   def destroy?
