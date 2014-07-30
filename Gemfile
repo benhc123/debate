@@ -21,6 +21,7 @@ gem 'figaro'
 
 gem 'acts_as_votable'
 gem 'acts-as-taggable-on'
+gem 'vestal_versions', github: 'houstonmc/vestal_versions', ref: 'a3bec7ce5e4238b146dfa66ab918b3d78051a164'
 
 group :development do
   gem 'better_errors'

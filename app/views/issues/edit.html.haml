@@ -1,8 +1,45 @@
 .container
-  %h1 Editing Issue
+  %ul.nav.nav-tabs(role='tablist')
+    %li.active
+      %a(href='#edit' role='tab' data-toggle='tab') Edit
+    %li
+      %a(href='#history' role='tab' data-toggle='tab') History
 
-  = render 'form'
+  .tab-content
+    .tab-pane.active#edit
+      = render 'form'
+      = link_to 'Delete', @issue, method: :delete, class: [:btn, :'btn-danger'], data: { confirm: 'Are you sure?' }
+    .tab-pane#history
+      .row
+        .col-lg-4
+          %h3 Versions
+          %button Make current version
 
-  = link_to 'Delete', @issue, method: :delete, class: [:btn, :'btn-danger'], data: { confirm: 'Are you sure?' }
-  = link_to 'Show', @issue, class: [:btn, :'btn-default']
-  = link_to 'Back', issues_path, class: [:btn, :'btn-default']
+          - original_version_number = @issue.version
+
+          %ol.version-list
+            = collection_radio_buttons(:issue, :version, @issue.versions.reverse, :number, :pretty_created_at) do |b|
+              %li
+                - @issue.revert_to(b.value)
+                = b.label('class' => 'version-label', 'data-title' => @issue.title, 'data-text' => @issue.text) do
+                  = b.radio_button(checked: b.value == original_version_number, class: 'version-radio')
+                  = b.object.pretty_created_at
+                - @issue.revert_to(original_version_number)
+
+        .col-lg-8.version-preview
+          %h4 Title
+          %p.version-title
+            = @issue.title
+          %h4 Text
+          %p.version-text
+            = @issue.text
+
+= content_for(:scripts) do
+  :javascript
+    $('.version-radio').on('change', function(event) {
+      var $label = $(this).closest('label'),
+          title = $label.data('title'),
+          text = $label.data('text');
+      $('.version-title').text(title);
+      $('.version-text').text(text);
+    });

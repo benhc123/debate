@@ -1,6 +1,8 @@
 class Issue < ActiveRecord::Base
+  versioned class_name: 'IssueVersion'
+
   enum position: [:for, :against, :neutral, :abstain]
-  
+
   belongs_to :author, class_name: 'User'
   has_many :theses
 
