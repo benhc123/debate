@@ -2,10 +2,11 @@
   = f.error_notification
 
   .form-inputs
-    = f.association :issue
-    = f.input :position, collection: Issue.positions
+    = f.association :issue, as: :hidden
+    = f.input :position, collection: Issue.positions, as: :hidden
     = f.input :summary, as: :string
     = f.input :text
 
   .form-actions
     = f.button :submit, class: :'btn-success'
+    = link_to 'Cancel', f.object.issue
