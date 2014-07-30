@@ -34,6 +34,9 @@ group :development, :test do
   gem 'sqlite3'
   gem 'factory_girl_rails'
   gem 'rspec-rails'
+  gem 'pry'
+  gem 'pry-nav'
+  gem 'pry-stack_explorer'
 end
 group :test do
   gem 'capybara'
