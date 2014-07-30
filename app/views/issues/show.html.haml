@@ -68,15 +68,17 @@
 
           .tab-content
             .tab-pane.active#edit
-              = form_for thesis do |f|
-                .row
-                  .col-xs-10= f.text_field :summary, class: :'form-control'
-                  .col-xs-2
-                    = link_to 'Cancel', nil, class: [:btn, :'btn-default']
-                    = f.submit 'Save', class: [:btn, :'btn-success']
-                .row
-                  .col-xs-12
-                    = f.text_area :text, class: :'form-control'
+              = simple_form_for thesis do |f|
+                = f.error_notification
+
+                .form_inputs
+                  = f.input :summary, as: :string, label: false
+                  = f.input :text, label: false
+
+                .form-actions
+                  = f.submit 'Save', class: [:btn, :'btn-success']
+                  = link_to 'Cancel', @issue
+
             .tab-pane#history
               .row
                 .col-lg-4
