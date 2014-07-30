@@ -22,6 +22,7 @@ gem 'figaro'
 gem 'acts_as_votable'
 gem 'acts-as-taggable-on'
 gem 'paper_trail', '3.0.3'
+gem 'browser-timezone-rails'
 
 group :development do
   gem 'better_errors'
