@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140729090748) do
+ActiveRecord::Schema.define(version: 20140730051818) do
 
   create_table "issues", force: true do |t|
     t.text     "title"
@@ -76,25 +76,15 @@ ActiveRecord::Schema.define(version: 20140729090748) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
   create_table "versions", force: true do |t|
-    t.integer  "versioned_id"
-    t.string   "versioned_type"
-    t.integer  "user_id"
-    t.string   "user_type"
-    t.string   "user_name"
-    t.text     "modifications"
-    t.integer  "number"
-    t.integer  "reverted_from"
-    t.string   "tag"
+    t.string   "item_type",  null: false
+    t.integer  "item_id",    null: false
+    t.string   "event",      null: false
+    t.string   "whodunnit"
+    t.text     "object"
     t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
-  add_index "versions", ["created_at"], name: "index_versions_on_created_at"
-  add_index "versions", ["number"], name: "index_versions_on_number"
-  add_index "versions", ["tag"], name: "index_versions_on_tag"
-  add_index "versions", ["user_id", "user_type"], name: "index_versions_on_user_id_and_user_type"
-  add_index "versions", ["user_name"], name: "index_versions_on_user_name"
-  add_index "versions", ["versioned_id", "versioned_type"], name: "index_versions_on_versioned_id_and_versioned_type"
+  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
 
   create_table "votes", force: true do |t|
     t.integer  "votable_id"

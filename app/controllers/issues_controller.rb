@@ -1,5 +1,5 @@
 class IssuesController < ApplicationController
-  before_action :set_issue, only: [:show, :edit, :update, :destroy, :upvote, :downvote, :voteyea, :votenay]
+  before_action :set_issue, only: [:show, :edit, :update, :destroy, :upvote, :downvote, :voteyea, :votenay, :revert]
 
   # GET /issues
   # GET /issues.json
@@ -70,7 +70,7 @@ class IssuesController < ApplicationController
   def downvote
     do_vote false, :visibility
   end
-  
+
   def vote vote, scope
     authorize @issue
 
@@ -88,8 +88,19 @@ class IssuesController < ApplicationController
     do_vote false, :approval
   end
 
+  def revert
+    version_number = params[:issue][:version].to_i
+    already_at_desired_version = version_number == @issue.versions.last.index
+    no_version_to_switch_to = @issue.versions.count < 2
+    return redirect_to @issue if already_at_desired_version or no_version_to_switch_to
+
+    reified = @issue.versions[version_number].next.reify
+    reified.save
+    redirect_to @issue
+  end
+
   private
-  
+
   def set_issue
     @issue = Issue.find(params[:id])
   end
@@ -97,7 +108,7 @@ class IssuesController < ApplicationController
   def issue_params
     params.require(:issue).permit(:title, :text, :author_id)
   end
-  
+
   def do_vote *args
     vote *args
     redirect_to :back

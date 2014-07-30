@@ -1,5 +1,5 @@
 class Issue < ActiveRecord::Base
-  versioned class_name: 'IssueVersion'
+  has_paper_trail
 
   enum position: [:for, :against, :neutral, :abstain]
 

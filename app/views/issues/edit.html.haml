@@ -1,4 +1,4 @@
-.container
+.container#edit-issue
   %ul.nav.nav-tabs(role='tablist')
     %li.active
       %a(href='#edit' role='tab' data-toggle='tab') Edit
@@ -7,24 +7,40 @@
 
   .tab-content
     .tab-pane.active#edit
-      = render 'form'
-      = link_to 'Delete', @issue, method: :delete, class: [:btn, :'btn-danger'], data: { confirm: 'Are you sure?' }
+      = simple_form_for(@issue) do |f|
+        = f.error_notification
+
+        .form-inputs
+          = f.input :title, as: :string
+          = f.input :text
+
+        .form-actions
+          = f.button :submit, 'Save', class: :'btn-success'
+          = link_to 'Cancel', @issue
+          = link_to 'Delete', @issue, method: :delete, class: [:btn, :'btn-danger', :'pull-right'], data: {confirm: 'Are you sure?'}
+
+
     .tab-pane#history
       .row
         .col-lg-4
           %h3 Versions
-          %button Make current version
+          = form_for(@issue, url: revert_issue_path) do |f|
+            = f.submit('Make current version', class: 'btn btn-primary')
 
-          - original_version_number = @issue.version
-
-          %ol.version-list
-            = collection_radio_buttons(:issue, :version, @issue.versions.reverse, :number, :pretty_created_at) do |b|
-              %li
-                - @issue.revert_to(b.value)
-                = b.label('class' => 'version-label', 'data-title' => @issue.title, 'data-text' => @issue.text) do
-                  = b.radio_button(checked: b.value == original_version_number, class: 'version-radio')
-                  = b.object.pretty_created_at
-                - @issue.revert_to(original_version_number)
+            %ol.version-list
+              = f.collection_radio_buttons(:version, @issue.versions.reverse, :index, :created_at) do |b|
+                - version = b.object
+                - version_number = version.index
+                - is_live_version = version_number == @issue.versions.last.index
+                - reified = is_live_version ? @issue : version.next.reify
+                - title = reified.title
+                - text = reified.text
+                %li
+                  = b.label('class' => 'version-label', 'data-title' => title, 'data-text' => text) do
+                    = b.radio_button(checked: is_live_version, class: 'version-radio')
+                    = version.created_at.in_time_zone.to_s(:pretty)
+                    by
+                    = User.find(version.whodunnit).name
 
         .col-lg-8.version-preview
           %h4 Title

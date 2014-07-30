@@ -1,6 +1,13 @@
 .container
   %h1 New Issue
 
-  = render 'form'
+  = simple_form_for(@issue) do |f|
+    = f.error_notification
 
-  = link_to 'Back', issues_path, class: [:btn, :'btn-default']
+    .form-inputs
+      = f.input :title, as: :string
+      = f.input :text
+
+    .form-actions
+      = f.button :submit, class: :'btn-success'
+      = link_to 'Cancel', issues_path

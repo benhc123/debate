@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       post :downvote
       post :voteyea
       post :votenay
+      patch :revert
     end
   end
 
