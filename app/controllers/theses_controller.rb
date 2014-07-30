@@ -50,7 +50,7 @@ class ThesesController < ApplicationController
 
     respond_to do |format|
       if @thesis.update(thesis_params)
-        format.html { redirect_to :back, notice: 'Thesis was successfully updated.' }
+        format.html { redirect_to @thesis.issue, notice: 'Thesis was successfully updated.' }
         format.json { render :show, status: :ok, location: @thesis }
       else
         format.html { render :edit }
