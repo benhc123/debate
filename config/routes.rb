@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :theses
+  resources :theses do
+    member do
+      patch :revert
+    end
+  end
 
   resources :issues do
     member do
