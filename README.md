@@ -5,6 +5,17 @@ The goal of this system is to codify rational discourse and allow polling on iss
 
 The basic concept is laid out in a little more detail [in the wiki](https://github.com/TheFuturistParty/debate/wiki/Data-Model).
 
+Participation
+-------------
+
+Development information is spread out over a few services:
+
+* [Development Listserv](https://groups.google.com/forum/#!forum/debate-dev/)
+* [Github Repo](https://github.com/TheFuturistParty/debate/)
+* [Futurist Party Slack](https://futuristparty.slack.com/messages/web-dev/) ([e-mail me](mailto:Will%20Holcomb%20%3Cwill+slack@dhappy.org%3E) for an invite)
+
+If you're interested in paid development, [estimate and rate hours](https://crwdfund.herokuapp.com) then [e-mail me](mailto:Will%20Holcomb%20%3Cwill+work@dhappy.org%3E) since I never look at that site.
+
 Installation
 ------------
 
@@ -40,13 +51,3 @@ If you change anything, it has to be precompiled before it is sent to Heroku.
 - `RAILS_ENV=production rake assets:precompile`
 - `git add -A`
 - `git push heroku master`
-
-Contributing
-------------
-
-If you make improvements to this application, please share with others.
-
-- Fork the project on GitHub.
-- Make your feature addition or bug fix.
-- Commit with Git.
-- Send a pull request.
