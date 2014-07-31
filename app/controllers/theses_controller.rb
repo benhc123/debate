@@ -1,40 +1,25 @@
 class ThesesController < ApplicationController
   before_action :set_thesis, only: [:show, :edit, :update, :destroy, :revert]
 
-  # GET /theses
-  # GET /theses.json
-  def index
-    @theses = Thesis.all
-  end
-
-  # GET /theses/1
-  # GET /theses/1.json
   def show
   end
 
-  # GET /theses/new
   def new
+    @issue = Issue.find(params[:issue_id])
+    @position = params[:position]
     @thesis = Thesis.new
-    @thesis.issue = Issue.find params[:issue] if params[:issue]
-    @thesis.position = params[:position] if params[:position]
-
     authorize @thesis
   end
 
-  # GET /theses/1/edit
-  def edit
-  end
-
-  # POST /theses
-  # POST /theses.json
   def create
-    @thesis = Thesis.new(thesis_params)
-
-    @thesis.author = current_user
+    issue = Issue.find(params[:issue_id])
+    service = CreateThesisRelatedToIssue.new(thesis_params.merge(author: current_user), issue, params[:position])
+    service.run
+    @thesis = service.thesis
 
     respond_to do |format|
-      if @thesis.save
-        format.html { redirect_to @thesis.issue, notice: 'Thesis was successfully created.' }
+      if service.success?
+        format.html { redirect_to issue, notice: 'Thesis was successfully created.' }
         format.json { render :show, status: :created, location: @thesis }
       else
         format.html { render :new }
@@ -43,14 +28,18 @@ class ThesesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /theses/1
-  # PATCH/PUT /theses/1.json
+  def edit
+  end
+
   def update
     authorize @thesis
+    @issue = Issue.find(params[:issue_id])
+    service = UpdateThesis.new(@thesis, thesis_params, @issue)
+    service.run
 
     respond_to do |format|
-      if @thesis.update(thesis_params)
-        format.html { redirect_to @thesis.issue, notice: 'Thesis was successfully updated.' }
+      if service.success?
+        format.html { redirect_to @issue, notice: 'Thesis was successfully updated.' }
         format.json { render :show, status: :ok, location: @thesis }
       else
         format.html { render :edit }
@@ -80,7 +69,7 @@ class ThesesController < ApplicationController
     redirect_to @thesis.issue
   end
 
-  private
+private
     # Use callbacks to share common setup or constraints between actions.
     def set_thesis
       @thesis = Thesis.find(params[:id])
@@ -88,6 +77,6 @@ class ThesesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def thesis_params
-      params.require(:thesis).permit(:issue_id, :summary, :text, :author_id, :position)
+      params.require(:thesis).permit(:summary, :text, :author_id)
     end
 end

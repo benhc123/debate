@@ -35,8 +35,12 @@
                 - reified = is_live_version ? @issue : version.next.reify
                 - title = reified.title
                 - text = reified.text
+                - theses_for = reified.theses_for
+                - theses_for_summaries = theses_for.map(&:summary).to_json
+                - theses_against = reified.theses_against
+                - theses_against_summaries = theses_against.map(&:summary).to_json
                 %li
-                  = b.label('class' => 'version-label', 'data-title' => title, 'data-text' => text) do
+                  &= b.label('class' => 'version-label', 'data-title' => title, 'data-text' => text, 'data-theses-for-summaries' => theses_for_summaries, 'data-theses-against-summaries' => theses_against_summaries) do
                     = b.radio_button(checked: is_live_version, class: 'version-radio')
                     = version.created_at.in_time_zone.to_s(:pretty)
                     by
@@ -49,6 +53,23 @@
           %h4 Text
           %p.version-text
             = @issue.text
+          .row
+            %strong.col-xs-6
+              Yea
+            %strong.col-xs-6
+              Nay
+          .row
+            .col-xs-6
+              %ol.theses#version-theses-for-summaries
+                - @issue.theses_for.each do |thesis|
+                  %li.thesis= thesis.summary
+            .col-xs-6
+              %ol.theses#version-theses-against-summaries
+                - @issue.theses_against.each do |thesis|
+                  %li.thesis= thesis.summary
+
+
+
 
 = content_for(:scripts) do
   :javascript
@@ -58,4 +79,22 @@
           text = $label.data('text');
       $('.version-title').text(title);
       $('.version-text').text(text);
+
+      $thesesForSummaries = $('#version-theses-for-summaries');
+      $thesesForSummaries.empty();
+      $.each($label.data('theses-for-summaries'), function(index, summary) {
+        var $li = $(document.createElement('li'));
+        $li.addClass('thesis');
+        $li.text(summary);
+        $thesesForSummaries.append($li);
+      });
+
+      $thesesAgainstSummaries = $('#version-theses-against-summaries');
+      $thesesAgainstSummaries.empty();
+      $.each($label.data('theses-against-summaries'), function(index, summary) {
+        var $li = $(document.createElement('li'));
+        $li.addClass('thesis');
+        $li.text(summary);
+        $thesesAgainstSummaries.append($li);
+      });
     });

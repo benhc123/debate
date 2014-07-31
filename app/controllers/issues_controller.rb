@@ -94,12 +94,11 @@ class IssuesController < ApplicationController
     no_version_to_switch_to = @issue.versions.count < 2
     return redirect_to @issue if already_at_desired_version or no_version_to_switch_to
 
-    reified = @issue.versions[version_number].next.reify
-    reified.save
+    @issue.revert_to!(version_number)
     redirect_to @issue
   end
 
-  private
+private
 
   def set_issue
     @issue = Issue.find(params[:id])

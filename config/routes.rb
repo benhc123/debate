@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  resources :theses do
-    member do
-      patch :revert
-    end
-  end
-
   resources :issues do
     member do
       post :upvote
@@ -12,6 +6,11 @@ Rails.application.routes.draw do
       post :voteyea
       post :votenay
       patch :revert
+    end
+    resources :theses, except: [:index] do
+      member do
+        patch :revert
+      end
     end
   end
 

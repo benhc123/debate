@@ -242,6 +242,11 @@
 
 .version-preview {
   padding-top: 80px;
+
+  ol.theses {
+    list-style-type: none;
+    padding-left: 0;
+  }
 }
 
 .version-label {
