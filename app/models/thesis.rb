@@ -8,7 +8,13 @@ class Thesis < ActiveRecord::Base
     AGAINST = 'against'
   end
 
-  def for
-    []
+  def revert_to!(version_number, issue)
+    version = self.versions[version_number]
+    reified = version.next.reify
+
+    reified.transaction do
+      reified.save
+      issue.touch_with_version
+    end
   end
 end

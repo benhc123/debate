@@ -59,14 +59,14 @@ class ThesesController < ApplicationController
   end
 
   def revert
+    issue = Issue.find(params[:issue_id])
     version_number = params[:thesis][:version].to_i
     already_at_desired_version = version_number == @thesis.versions.last.index
     no_version_to_switch_to = @thesis.versions.count < 2
-    return redirect_to @thesis.issue if already_at_desired_version or no_version_to_switch_to
+    return redirect_to issue if already_at_desired_version or no_version_to_switch_to
 
-    reified = @thesis.versions[version_number].next.reify
-    reified.save
-    redirect_to @thesis.issue
+    @thesis.revert_to!(version_number, issue)
+    redirect_to issue
   end
 
 private
