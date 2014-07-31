@@ -1,8 +1,61 @@
-.container
-  %h1 Editing Issue
+.container#edit-issue
+  %ul.nav.nav-tabs(role='tablist')
+    %li.active
+      %a(href='#edit' role='tab' data-toggle='tab') Edit
+    %li
+      %a(href='#history' role='tab' data-toggle='tab') History
 
-  = render 'form'
+  .tab-content
+    .tab-pane.active#edit
+      = simple_form_for(@issue) do |f|
+        = f.error_notification
 
-  = link_to 'Delete', @issue, method: :delete, class: [:btn, :'btn-danger'], data: { confirm: 'Are you sure?' }
-  = link_to 'Show', @issue, class: [:btn, :'btn-default']
-  = link_to 'Back', issues_path, class: [:btn, :'btn-default']
+        .form-inputs
+          = f.input :title, as: :string
+          = f.input :text
+
+        .form-actions
+          = f.button :submit, 'Save', class: :'btn-success'
+          = link_to 'Cancel', @issue
+          = link_to 'Delete', @issue, method: :delete, class: [:btn, :'btn-danger', :'pull-right'], data: {confirm: 'Are you sure?'}
+
+
+    .tab-pane#history
+      .row
+        .col-lg-4
+          %h3 Versions
+          = form_for(@issue, url: revert_issue_path) do |f|
+            = f.submit('Make current version', class: 'btn btn-primary')
+
+            %ol.version-list
+              = f.collection_radio_buttons(:version, @issue.versions.reverse, :index, :created_at) do |b|
+                - version = b.object
+                - version_number = version.index
+                - is_live_version = version_number == @issue.versions.last.index
+                - reified = is_live_version ? @issue : version.next.reify
+                - title = reified.title
+                - text = reified.text
+                %li
+                  = b.label('class' => 'version-label', 'data-title' => title, 'data-text' => text) do
+                    = b.radio_button(checked: is_live_version, class: 'version-radio')
+                    = version.created_at.in_time_zone.to_s(:pretty)
+                    by
+                    = User.find(version.whodunnit).name
+
+        .col-lg-8.version-preview
+          %h4 Title
+          %p.version-title
+            = @issue.title
+          %h4 Text
+          %p.version-text
+            = @issue.text
+
+= content_for(:scripts) do
+  :javascript
+    $('.version-radio').on('change', function(event) {
+      var $label = $(this).closest('label'),
+          title = $label.data('title'),
+          text = $label.data('text');
+      $('.version-title').text(title);
+      $('.version-text').text(text);
+    });

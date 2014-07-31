@@ -21,6 +21,8 @@ gem 'figaro'
 
 gem 'acts_as_votable'
 gem 'acts-as-taggable-on'
+gem 'paper_trail', '3.0.3'
+gem 'browser-timezone-rails'
 
 group :development do
   gem 'better_errors'
@@ -33,6 +35,9 @@ group :development, :test do
   gem 'sqlite3'
   gem 'factory_girl_rails'
   gem 'rspec-rails'
+  gem 'pry'
+  gem 'pry-nav'
+  gem 'pry-stack_explorer'
 end
 group :test do
   gem 'capybara'

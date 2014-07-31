@@ -1,5 +1,5 @@
 class ThesesController < ApplicationController
-  before_action :set_thesis, only: [:show, :edit, :update, :destroy]
+  before_action :set_thesis, only: [:show, :edit, :update, :destroy, :revert]
 
   # GET /theses
   # GET /theses.json
@@ -34,7 +34,7 @@ class ThesesController < ApplicationController
 
     respond_to do |format|
       if @thesis.save
-        format.html { redirect_to @thesis, notice: 'Thesis was successfully created.' }
+        format.html { redirect_to @thesis.issue, notice: 'Thesis was successfully created.' }
         format.json { render :show, status: :created, location: @thesis }
       else
         format.html { render :new }
@@ -50,7 +50,7 @@ class ThesesController < ApplicationController
 
     respond_to do |format|
       if @thesis.update(thesis_params)
-        format.html { redirect_to :back, notice: 'Thesis was successfully updated.' }
+        format.html { redirect_to @thesis.issue, notice: 'Thesis was successfully updated.' }
         format.json { render :show, status: :ok, location: @thesis }
       else
         format.html { render :edit }
@@ -67,6 +67,17 @@ class ThesesController < ApplicationController
       format.html { redirect_to theses_url, notice: 'Thesis was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def revert
+    version_number = params[:thesis][:version].to_i
+    already_at_desired_version = version_number == @thesis.versions.last.index
+    no_version_to_switch_to = @thesis.versions.count < 2
+    return redirect_to @thesis.issue if already_at_desired_version or no_version_to_switch_to
+
+    reified = @thesis.versions[version_number].next.reify
+    reified.save
+    redirect_to @thesis.issue
   end
 
   private

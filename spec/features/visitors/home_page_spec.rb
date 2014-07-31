@@ -4,13 +4,9 @@
 #   So I can learn more about the website
 feature 'Home page' do
 
-  # Scenario: Visit the home page
-  #   Given I am a visitor
-  #   When I visit the home page
-  #   Then I see "Welcome"
   scenario 'visit the home page' do
     visit root_path
-    expect(page).to have_content 'Welcome'
+    expect(page.status_code).to eq 200
   end
 
 end

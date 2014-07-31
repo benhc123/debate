@@ -53,16 +53,68 @@
       .thesis{ data: { id: thesis.id }, style: 'display: none' }
         .html
           .row
-            %h2.col-xs-12= thesis.summary
+            %h2.col-xs-12
+              = thesis.summary
+              %a.btn.btn-default.pull-right(title='Edit')
+                %i.glyphicon.glyphicon-edit
           .row
             .text.col-xs-12
         .edit{ style: 'display: none' }
-          = form_for thesis do |f|
-            .row
-              .col-xs-10= f.text_field :summary, class: :'form-control'
-              .col-xs-2
-                = link_to 'Cancel', nil, class: [:btn, :'btn-default']
-                = f.submit 'Save', class: [:btn, :'btn-success']
-            .row
-              .col-xs-12
-                = f.text_area :text, class: :'form-control'
+          %ul.nav.nav-tabs(role='tablist')
+            %li.active
+              %a(href='#edit' role='tab' data-toggle='tab') Edit
+            %li
+              %a(href='#history' role='tab' data-toggle='tab') History
+
+          .tab-content
+            .tab-pane.active#edit
+              = simple_form_for thesis do |f|
+                = f.error_notification
+
+                .form_inputs
+                  = f.input :summary, as: :string, label: false
+                  = f.input :text, label: false
+
+                .form-actions
+                  = f.submit 'Save', class: [:btn, :'btn-success']
+                  = link_to 'Cancel', @issue
+
+            .tab-pane#history
+              .row
+                .col-lg-4
+                  %h3 Versions
+                  = form_for thesis, url: {action: 'revert', id: thesis.id, controller: 'theses'} do |f|
+                    = f.submit('Make current version', class: 'btn btn-primary')
+
+                    %ol.version-list
+                      = f.collection_radio_buttons(:version, thesis.versions.reverse, :index, :created_at) do |b|
+                        - version = b.object
+                        - version_number = version.index
+                        - is_live_version = version_number == thesis.versions.last.index
+                        - reified = is_live_version ? thesis : version.next.reify
+                        - summary = reified.summary
+                        - text = reified.text
+                        %li
+                          = b.label('class' => 'version-label', 'data-summary' => summary, 'data-text' => text) do
+                            = b.radio_button(checked: is_live_version, class: 'version-radio')
+                            = version.created_at.in_time_zone.to_s(:pretty)
+                            by
+                            = User.find(version.whodunnit).name
+
+                .col-lg-8.version-preview
+                  %h4 Summary
+                  %p.version-summary
+                    = thesis.summary
+                  %h4 Text
+                  %p.version-text
+                    = thesis.text
+
+= content_for(:scripts) do
+  :javascript
+    $('.version-radio').on('change', function(event) {
+      var $label = $(this).closest('label'),
+          summary = $label.data('summary'),
+          text = $label.data('text');
+      $('.version-summary').text(summary);
+      $('.version-text').text(text);
+    });

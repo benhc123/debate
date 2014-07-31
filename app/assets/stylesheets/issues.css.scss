@@ -22,7 +22,7 @@
         font-size: 20px;
         position: relative;
         left: -1em;
-        
+
         a {
             padding: .25em .5em;
             display: block;
@@ -77,7 +77,7 @@
             .icon {
                 max-width: 100%;
             }
-            
+
             .count {
                 text-align: center;
             }
@@ -137,8 +137,8 @@
             font-size: 15px;
         }
 
-        .text {
-            margin-left: 2em;
+        .edit_thesis {
+          padding-top: 20px;
         }
 
         textarea {
@@ -166,7 +166,7 @@
         padding: 1em;
         color: white;
     }
-    
+
     a:hover {
         background-color: yellow;
         color: black;
@@ -202,11 +202,11 @@
         height: 12em;
         margin-bottom: .5em;
     }
-    
+
     .controls {
         text-align: right;
         padding-right: 5%;
-    }    
+    }
 }
 
 #theses {
@@ -217,7 +217,7 @@
         margin: 0;
         padding: 0;
     }
-    
+
     li {
         border: 1px solid #222;
         padding: .25em .5em;
@@ -229,4 +229,21 @@
         display: block;
         font-weight: bold;
     }
+}
+
+#edit-issue {
+  padding-top: 20px;
+}
+
+.version-list {
+  list-style-type: none;
+  padding: 10px 0;
+}
+
+.version-preview {
+  padding-top: 80px;
+}
+
+.version-label {
+  cursor: pointer;
 }
