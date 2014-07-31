@@ -1,7 +1,7 @@
 class Issue < ActiveRecord::Base
   has_paper_trail
 
-  enum position: [:for, :against, :neutral, :abstain]
+  enum position: [:for, :against]
 
   belongs_to :author, class_name: 'User'
   has_many :theses
