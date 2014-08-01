@@ -59,16 +59,27 @@ class Issue < ActiveRecord::Base
 
     found = 0
     page = 1
-    
+    loc = Organization.find_or_create_by name: 'Library of Congress'
+    congress = User.find_or_create_by!( email: 'membership@congress.gov' ) do |user| # Should be an organization, but issue authors are only users currently
+      pass = SecureRandom.random_bytes 20 + rand( 20 )
+      user.name = 'Congress'
+      user.password = pass
+      user.password_confirmation = pass
+    end
 
     while found < count
-      url = "https://congress.api.sunlightfoundation.com/bills?fields=keywords,official_title&apikey=#{Rails.application.secrets.sunlight_key}&page=#{page}"
+      url = "https://congress.api.sunlightfoundation.com/bills?fields=keywords,short_title,official_title,summary&apikey=#{Rails.application.secrets.sunlight_key}&page=#{page}"
       puts url
       bills = JSON.load( open url )
       bills['results'].each do |bill|
-        if bill['keywords'].any?
-          # Issue.find_or_create_by( title: bill.
-          return bill
+        if not require_keywords or bill['keywords'].any?
+          title = bill['short_title'] || bill['official_title']
+          issue = Issue.find_or_create_by!( title: title, author: congress ) do |issue|
+            issue.text = bill['summary']
+          end
+          loc.tag( issue, with: bill['keywords'], on: :tags )
+          found += 1
+          return issue
         end
       end
       page += 1

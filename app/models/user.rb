@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :organizations
 
   acts_as_voter
+  acts_as_tagger
 
   def set_default_role
     self.role ||= :user
