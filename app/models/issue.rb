@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class Issue < ActiveRecord::Base
   has_paper_trail
 
@@ -50,5 +52,26 @@ class Issue < ActiveRecord::Base
 
   def version_created_at
     live? ? updated_at : version.created_at
+  end
+
+  def self.load_bills count = 10, require_keywords = true
+    raise "sunlight_key must be set to load data" if not Rails.application.secrets.sunlight_key
+
+    found = 0
+    page = 1
+    
+
+    while found < count
+      url = "https://congress.api.sunlightfoundation.com/bills?fields=keywords,official_title&apikey=#{Rails.application.secrets.sunlight_key}&page=#{page}"
+      puts url
+      bills = JSON.load( open url )
+      bills['results'].each do |bill|
+        if bill['keywords'].any?
+          # Issue.find_or_create_by( title: bill.
+          return bill
+        end
+      end
+      page += 1
+    end
   end
 end
