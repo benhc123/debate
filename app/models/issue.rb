@@ -57,7 +57,7 @@ class Issue < ActiveRecord::Base
   def self.load_bills count = 10, require_keywords = true
     raise "sunlight_key must be set to load data" if not Rails.application.secrets.sunlight_key
 
-    found = 0
+    loaded = []
     page = 1
     loc = Organization.find_or_create_by name: 'Library of Congress'
     congress = User.find_or_create_by!( email: 'membership@congress.gov' ) do |user| # Should be an organization, but issue authors are only users currently
@@ -67,7 +67,7 @@ class Issue < ActiveRecord::Base
       user.password_confirmation = pass
     end
 
-    while found < count
+    while loaded.count < count
       url = "https://congress.api.sunlightfoundation.com/bills?fields=keywords,short_title,official_title,summary&apikey=#{Rails.application.secrets.sunlight_key}&page=#{page}"
       puts url
       bills = JSON.load( open url )
@@ -78,11 +78,11 @@ class Issue < ActiveRecord::Base
             issue.text = bill['summary']
           end
           loc.tag( issue, with: bill['keywords'], on: :tags )
-          found += 1
-          return issue
+          loaded << issue
         end
       end
       page += 1
     end
+    loaded
   end
 end
