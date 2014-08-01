@@ -219,11 +219,24 @@
     }
 
     li {
+        position: relative;
         border: 1px solid #222;
         padding: .25em .5em;
         background-color: white;
         font-size: 13px;
+
+        .remove-thesis {
+          display: none;
+          position: absolute;
+          right: -28px;
+          top: 1px;
+        }
+
+        input:checked ~ .remove-thesis {
+          display: block;
+        }
     }
+
 
     .add {
         display: block;

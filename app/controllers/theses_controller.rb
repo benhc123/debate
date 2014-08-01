@@ -1,25 +1,24 @@
 class ThesesController < ApplicationController
-  before_action :set_thesis, only: [:show, :edit, :update, :destroy, :revert]
+  before_action :set_thesis, only: [:show, :edit, :update, :destroy, :revert, :remove]
+  before_action :set_issue, only: [:new, :create, :update, :revert, :remove]
 
   def show
   end
 
   def new
-    @issue = Issue.find(params[:issue_id])
     @position = params[:position]
     @thesis = Thesis.new
     authorize @thesis
   end
 
   def create
-    issue = Issue.find(params[:issue_id])
-    service = CreateThesisRelatedToIssue.new(thesis_params.merge(author: current_user), issue, params[:position])
+    service = CreateThesisRelatedToIssue.new(thesis_params.merge(author: current_user), @issue, params[:position])
     service.run
     @thesis = service.thesis
 
     respond_to do |format|
       if service.success?
-        format.html { redirect_to issue, notice: 'Thesis was successfully created.' }
+        format.html { redirect_to @issue, notice: 'Thesis was successfully created.' }
         format.json { render :show, status: :created, location: @thesis }
       else
         format.html { render :new }
@@ -33,7 +32,6 @@ class ThesesController < ApplicationController
 
   def update
     authorize @thesis
-    @issue = Issue.find(params[:issue_id])
     service = UpdateThesis.new(@thesis, thesis_params, @issue)
     service.run
 
@@ -59,20 +57,31 @@ class ThesesController < ApplicationController
   end
 
   def revert
-    issue = Issue.find(params[:issue_id])
     version_number = params[:thesis][:version].to_i
     already_at_desired_version = version_number == @thesis.versions.last.index
     no_version_to_switch_to = @thesis.versions.count < 2
-    return redirect_to issue if already_at_desired_version or no_version_to_switch_to
+    return redirect_to @issue if already_at_desired_version or no_version_to_switch_to
 
-    @thesis.revert_to!(version_number, issue)
-    redirect_to issue
+    @thesis.revert_to!(version_number, @issue)
+    redirect_to @issue
+  end
+
+  def remove
+    respond_to do |format|
+      if @issue.remove_thesis(@thesis)
+        format.js
+      end
+    end
   end
 
 private
     # Use callbacks to share common setup or constraints between actions.
     def set_thesis
       @thesis = Thesis.find(params[:id])
+    end
+
+    def set_issue
+      @issue = Issue.find(params[:issue_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

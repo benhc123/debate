@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :theses, except: [:index] do
       member do
         patch :revert
+        delete :remove
       end
     end
   end

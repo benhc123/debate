@@ -35,6 +35,8 @@
           %li.thesis
             = radio_button_tag :thesis, thesis.id
             = label_tag "thesis_#{thesis.id}", thesis.summary
+            = link_to remove_issue_thesis_path(@issue, thesis), method: :delete, remote: true, class: [:btn, :'btn-xs', :'btn-danger', :'remove-thesis'], data: {confirm: 'Are you sure?'} do
+              %i.glyphicon.glyphicon-remove
         %li.thesis
           = link_to new_issue_thesis_path(@issue, position: Thesis::POSITIONS::FOR), class: [:btn, :'btn-default', :add] do
             %i.glyphicon.glyphicon-plus-sign
@@ -44,6 +46,8 @@
           %li.thesis
             = radio_button_tag :thesis, thesis.id
             = label_tag "thesis_#{thesis.id}", thesis.summary
+            = link_to remove_issue_thesis_path(@issue, thesis), method: :delete, remote: true, class: [:btn, :'btn-xs', :'btn-danger', :'remove-thesis'], data: {confirm: 'Are you sure?'} do
+              %i.glyphicon.glyphicon-remove
         %li.thesis
           = link_to new_issue_thesis_path(@issue, position: Thesis::POSITIONS::AGAINST), class: [:btn, :'btn-default', :add] do
             %i.glyphicon.glyphicon-plus-sign
