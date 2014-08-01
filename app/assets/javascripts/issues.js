@@ -43,7 +43,7 @@
             if( $activeThesis ) {
                 $activeThesis.hide()
             }
-            $activeThesis = $("[data-id=" + $(this).find( 'input[type=radio]:checked' ).val() + "]")
+            $activeThesis = $("#forms [data-id=" + $(this).find( 'input[type=radio]:checked' ).val() + "]")
             $activeThesis.show()
         } )
 
