@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       post :votenay
       patch :revert
     end
-    resources :theses, except: [:index] do
+    resources :theses, except: [:index, :destroy] do
       member do
         patch :revert
         delete :remove

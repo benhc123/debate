@@ -1,5 +1,5 @@
 class ThesesController < ApplicationController
-  before_action :set_thesis, only: [:show, :edit, :update, :destroy, :revert, :remove]
+  before_action :set_thesis, only: [:show, :edit, :update, :revert, :remove]
   before_action :set_issue, only: [:new, :create, :update, :revert, :remove]
 
   def show
@@ -43,16 +43,6 @@ class ThesesController < ApplicationController
         format.html { render :edit }
         format.json { render json: @thesis.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /theses/1
-  # DELETE /theses/1.json
-  def destroy
-    @thesis.destroy
-    respond_to do |format|
-      format.html { redirect_to theses_url, notice: 'Thesis was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
