@@ -6,6 +6,8 @@ Rails.application.routes.draw do
       post :voteyea
       post :votenay
       patch :revert
+      patch 'theses-for/reorder', action: :reorder_theses_for, as: :reorder_theses_for
+      patch 'theses-against/reorder', action: :reorder_theses_against, as: :reorder_theses_against
     end
     resources :theses, except: [:index, :destroy] do
       member do

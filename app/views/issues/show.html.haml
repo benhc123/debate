@@ -30,9 +30,9 @@
 
   %form#theses.row
     .col-xs-6
-      %ol
+      %ol(data-reorder-url="#{reorder_theses_for_issue_path(@issue)}")
         - @issue.theses_for.each do |thesis|
-          %li.thesis
+          %li(class='thesis' data-id="#{thesis.id}")
             = radio_button_tag :thesis, thesis.id
             = label_tag "thesis_#{thesis.id}", thesis.summary
             = link_to remove_issue_thesis_path(@issue, thesis), method: :delete, remote: true, class: [:btn, :'btn-xs', :'btn-danger', :'remove-thesis'], data: {confirm: 'Are you sure?'} do
@@ -41,9 +41,9 @@
           = link_to new_issue_thesis_path(@issue, position: Thesis::POSITIONS::FOR), class: [:btn, :'btn-default', :add] do
             %i.glyphicon.glyphicon-plus-sign
     .col-xs-6
-      %ol
+      %ol(data-reorder-url="#{reorder_theses_against_issue_path(@issue)}")
         - @issue.theses_against.each do |thesis|
-          %li.thesis
+          %li(class='thesis' data-id="#{thesis.id}")
             = radio_button_tag :thesis, thesis.id
             = label_tag "thesis_#{thesis.id}", thesis.summary
             = link_to remove_issue_thesis_path(@issue, thesis), method: :delete, remote: true, class: [:btn, :'btn-xs', :'btn-danger', :'remove-thesis'], data: {confirm: 'Are you sure?'} do

@@ -1,5 +1,6 @@
 class IssuesController < ApplicationController
-  before_action :set_issue, only: [:show, :edit, :update, :destroy, :upvote, :downvote, :voteyea, :votenay, :revert]
+  before_action :set_issue, only: [:show, :edit, :update, :destroy, :upvote, :downvote, :voteyea, :votenay,
+                                   :revert, :reorder_theses_for, :reorder_theses_against]
 
   # GET /issues
   # GET /issues.json
@@ -96,6 +97,28 @@ class IssuesController < ApplicationController
 
     @issue.revert_to!(version_number)
     redirect_to @issue
+  end
+
+  def reorder_theses_for
+    ids = params[:issue][:thesis_for_ids].map(&:to_i)
+    return render nothing: true unless ids.present?
+
+    if @issue.update_attributes(thesis_for_ids: ids)
+      render nothing: true, status: :ok
+    else
+      render nothing: true, status: :error
+    end
+  end
+
+  def reorder_theses_against
+    ids = params[:issue][:thesis_against_ids].map(&:to_i)
+    return render nothing: true unless ids.present?
+
+    if @issue.update_attributes(thesis_against_ids: ids)
+      render nothing: true, status: :ok
+    else
+      render nothing: true, status: :error
+    end
   end
 
 private

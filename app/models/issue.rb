@@ -14,11 +14,11 @@ class Issue < ActiveRecord::Base
   end
 
   def theses_for
-    Thesis.where(id: thesis_for_ids).map {|t| t.version_at(version_created_at)}
+    get_theses(thesis_for_ids)
   end
 
   def theses_against
-    Thesis.where(id: thesis_against_ids).map {|t| t.version_at(version_created_at)}
+    get_theses(thesis_against_ids)
   end
 
   def add_thesis_for(thesis)
@@ -50,5 +50,10 @@ class Issue < ActiveRecord::Base
 
   def version_created_at
     live? ? updated_at : version.created_at
+  end
+
+private
+  def get_theses(ids)
+    Thesis.where(id: ids).map {|t| t.version_at(version_created_at)}.sort {|x,y| ids.index(x.id) <=> ids.index(y.id)}
   end
 end
