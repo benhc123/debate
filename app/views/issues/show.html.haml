@@ -15,6 +15,8 @@
   #text
     .row
       .html.col-xs-12
+        :markdown
+          #{@issue.text}
     .edit{ style: 'display: none' }
       = form_for @issue do |f|
         .row
@@ -63,6 +65,8 @@
                 %i.glyphicon.glyphicon-edit
           .row
             .text.col-xs-12
+              :markdown
+                #{thesis.text}
         .edit{ style: 'display: none' }
           %ul.nav.nav-tabs(role='tablist')
             %li.active
@@ -81,7 +85,7 @@
 
                 .form-actions
                   = f.submit 'Save', class: [:btn, :'btn-success']
-                  = link_to 'Cancel', @issue
+                  = link_to 'Cancel', '#', class: 'cancel'
 
             .tab-pane(id="history-#{thesis.id}")
               .row
@@ -97,7 +101,7 @@
                         - is_live_version = version_number == thesis.versions.last.index
                         - reified = is_live_version ? thesis : version.next.reify
                         - summary = reified.summary
-                        - text = reified.text
+                        - text = markdown_to_html(reified.text)
                         %li
                           = b.label('class' => 'version-label', 'data-summary' => summary, 'data-text' => text) do
                             = b.radio_button(checked: is_live_version, class: 'version-radio')
@@ -110,8 +114,9 @@
                   %p.version-summary
                     = thesis.summary
                   %h4 Text
-                  %p.version-text
-                    = thesis.text
+                  .version-text
+                    :markdown
+                      #{thesis.text}
 
 = content_for(:scripts) do
   :javascript
@@ -120,5 +125,5 @@
           summary = $label.data('summary'),
           text = $label.data('text');
       $('.version-summary').text(summary);
-      $('.version-text').text(text);
+      $('.version-text').html(text);
     });
