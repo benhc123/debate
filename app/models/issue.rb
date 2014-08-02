@@ -67,6 +67,8 @@ class Issue < ActiveRecord::Base
       user.password_confirmation = pass
     end
 
+    ActsAsTaggableOn.delimiter = '~' # parse: false doesn't work
+
     while loaded.count < count
       url = "https://congress.api.sunlightfoundation.com/bills?fields=keywords,short_title,official_title,summary&apikey=#{Rails.application.secrets.sunlight_key}&page=#{page}"
       puts url
@@ -77,7 +79,7 @@ class Issue < ActiveRecord::Base
           issue = Issue.find_or_create_by!( title: title, author: congress ) do |issue|
             issue.text = bill['summary']
           end
-          loc.tag( issue, with: bill['keywords'], on: :tags )
+          loc.tag( issue, with: bill['keywords'], on: :tags, parse: false )
           loaded << issue
         end
       end
