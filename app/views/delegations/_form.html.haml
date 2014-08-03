@@ -1,0 +1,8 @@
+= simple_form_for(@delegation) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.association :voter
+
+  .form-actions
+    = f.button :submit

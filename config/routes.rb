@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :delegations
+
   resources :organizations
 
   resources :issues do

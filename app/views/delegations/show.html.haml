@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Voter:
+  = @delegation.voter
+
+= link_to 'Edit', edit_delegation_path(@delegation)
+\|
+= link_to 'Back', delegations_path
