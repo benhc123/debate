@@ -1,0 +1,11 @@
+= simple_form_for(@delegation_entry) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.association :delegation
+    = f.input :delegate_type
+    = f.input :delegate_id
+    = f.input :position
+
+  .form-actions
+    = f.button :submit

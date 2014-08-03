@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Delegation:
+  = @delegation_entry.delegation
+%p
+  %b Delegate type:
+  = @delegation_entry.delegate_type
+%p
+  %b Delegate:
+  = @delegation_entry.delegate_id
+%p
+  %b Position:
+  = @delegation_entry.position
+
+= link_to 'Edit', edit_delegation_entry_path(@delegation_entry)
+\|
+= link_to 'Back', delegation_entries_path
