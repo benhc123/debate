@@ -3,7 +3,7 @@ Debate [![tip for next commit](http://tip4commit.com/projects/827.svg)](http://t
 
 The goal of this system is to codify rational discourse and allow polling on issues.
 
-Users should be able to proxy their vote either to an individual or organization.
+Users should be able to [proxy their vote](https://www.youtube.com/watch?v=fg0_Vhldz-8) either to an individual or organization.
 
 Identity will be verified via postal mail sent to their name and address as registered with the election commission.
 
