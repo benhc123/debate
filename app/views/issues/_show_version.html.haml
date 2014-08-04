@@ -1,0 +1,44 @@
+.row
+  %h1.col-xs-11
+    = link_to @issue.title, @issue
+
+.row
+  .col-xs-12
+    %span by
+    %span= link_to @issue.author.display, @issue.author
+
+#text
+  .row
+    .html.col-xs-12
+      :markdown
+        #{@issue.text}
+
+#vote.row
+  #yea.col-xs-6= link_to 'Yea', '#', class: current_user.try(:voted_up_on?, @issue, vote_scope: :approval) ? :selected : nil
+  #nay.col-xs-6= link_to 'Nay', '#', class: current_user.try(:voted_down_on?, @issue, vote_scope: :approval) ? :selected : nil
+
+%form#theses.row
+  .col-xs-6
+    %ol(data-reorder-url="#{reorder_theses_for_issue_path(@issue)}")
+      - @issue.theses_for.each do |thesis|
+        %li(class='thesis' data-id="#{thesis.id}")
+          = radio_button_tag :thesis, thesis.id
+          = label_tag "thesis_#{thesis.id}", thesis.summary
+  .col-xs-6
+    %ol(data-reorder-url="#{reorder_theses_against_issue_path(@issue)}")
+      - @issue.theses_against.each do |thesis|
+        %li(class='thesis' data-id="#{thesis.id}")
+          = radio_button_tag :thesis, thesis.id
+          = label_tag "thesis_#{thesis.id}", thesis.summary
+
+#forms
+  - @issue.theses.each do |thesis|
+    .thesis{ data: { id: thesis.id }, style: 'display: none' }
+      .html
+        .row
+          %h2.col-xs-12
+            = thesis.summary
+        .row
+          .text.col-xs-12
+            :markdown
+              #{thesis.text}

@@ -7,4 +7,4 @@
         .col-xs-1
           = image_tag vote.vote_flag ? 'for.svg' : 'against.svg', class: :icon
         .col-xs-11
-          = link_to vote.votable.title, vote.votable
+          = link_to vote.votable.title, issue_path(vote.votable, version_at: (vote.updated_at.to_f * 1000.00).to_i, voter_id: @user.id)

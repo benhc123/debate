@@ -1,3 +1,14 @@
+/* global Initializers */
+Initializers = {
+    selectableTheses: function() {
+        var $activeThesis;
+        $('#theses').on('change', function() {
+            if ($activeThesis) $activeThesis.hide();
+            $activeThesis = $("#forms [data-id=" + $(this).find( 'input[type=radio]:checked' ).val() + "]");
+            $activeThesis.show();
+        });
+    }
+};
 (function() {
     function ready() {
         $('#theses ol').sortable({
@@ -36,12 +47,7 @@
         });
 
 
-        var $activeThesis;
-        $('#theses').on('change', function() {
-            if ($activeThesis) $activeThesis.hide();
-            $activeThesis = $("#forms [data-id=" + $(this).find( 'input[type=radio]:checked' ).val() + "]");
-            $activeThesis.show();
-        });
+        Initializers.selectableTheses();
 
         // toggle editing of issue
         $('#forms .thesis').each( function(index, elem) {
@@ -64,4 +70,3 @@
     $(ready);
     $(document).on('page:load', ready);
 })();
-

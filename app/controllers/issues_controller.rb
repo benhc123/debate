@@ -11,6 +11,20 @@ class IssuesController < ApplicationController
   # GET /issues/1
   # GET /issues/1.json
   def show
+    if params[:version_at]
+      timestamp = Time.at(params[:version_at].to_f / 1000.00)
+      @issue = @issue.version_at(timestamp)
+      @issue.version_timestamp = timestamp
+      @voter = User.find(params[:voter_id])
+      render :show_version
+    end
+
+    if params[:version_index]
+      version = @issue.versions[params[:version_index].to_i]
+      @issue = @issue.version_at(version.created_at)
+      @issue.version_timestamp = version.created_at
+      render :show_version
+    end
   end
 
   # GET /issues/new

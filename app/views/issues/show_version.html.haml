@@ -1,0 +1,11 @@
+#issue.container
+  .inner-wrapper
+    - if @voter
+      %div{:class => "alert alert-info"}
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
+        %div
+          = "Showing this issue as it was when #{@voter.name} voted on it."
+          = link_to 'Click here', @issue
+          to view its latest version.
+
+    = render partial: 'show_version'
