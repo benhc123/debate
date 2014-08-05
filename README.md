@@ -41,7 +41,7 @@ Installation
 - `cd debate`
 - `heroku create app dbate`
 - `heroku addons:add heroku-postgresql`
-- `heroku config:add DOMAIN_NAME='dbate.herokuapp.com'
+- `heroku config:add DOMAIN_NAME='dbate.herokuapp.com`
 - `git push heroku master`
 - `heroku config:add ADMIN_NAME='admin'`
 - `heroku config:add ADMIN_EMAIL='root@futuristparty.org' ADMIN_PASSWORD='secret'`
