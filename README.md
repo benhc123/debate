@@ -21,7 +21,7 @@ If you're interested in paid development, [estimate and rate hours](https://crwd
 Installation
 ------------
 
-# Locally
+## Locally
 
 1. `sudo apt-get install git`
 2. `git clone https://github.com/TheFuturistParty/debate.git`
@@ -35,7 +35,7 @@ Installation
 10. `rails s`
 11. `chrome http://localhost:3000`
 
-# Heroku
+## Heroku
 
 - `git clone https://github.com/TheFuturistParty/debate.git`
 - `cd debate`
