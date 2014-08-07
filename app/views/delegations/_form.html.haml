@@ -2,7 +2,16 @@
   = f.error_notification
 
   .form-inputs
-    = f.association :voter
+    = select_tag :voter_type, options_for_select( ['User', 'Organization'] )
+
+  .form-inputs
+    = select_tag :voter_id, options_from_collection_for_select( User.all, :id, :display )
+
+  .form-inputs
+    = select_tag :voter_id, options_from_collection_for_select( Organization.all, :id, :name )
+
+  .form-inputs
+    = select_tag :tag_id, options_from_collection_for_select( ActsAsTaggableOn::Tag.all, :id, :name ), multiple: true
 
   .form-actions
-    = f.button :submit
+    = f.button :submit, class: :'btn-default'
