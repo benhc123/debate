@@ -1,17 +1,17 @@
-= simple_form_for(@delegation) do |f|
+= simple_form_for(@delegation, html: { class: 'form-horizontal' } ) do |f|
   = f.error_notification
 
   .form-inputs
-    = select_tag :voter_type, options_for_select( ['User', 'Organization'] )
+    = select_tag :voter_type, options_for_select( ['User', 'Organization'] ), class: 'form-control'
 
   .form-inputs
-    = select_tag :voter_id, options_from_collection_for_select( User.all, :id, :display )
+    = select_tag :voter_id, options_from_collection_for_select( User.all, :id, :display ), class: 'form-control'
 
   .form-inputs
-    = select_tag :voter_id, options_from_collection_for_select( Organization.all, :id, :name )
+    = select_tag :voter_id, options_from_collection_for_select( Organization.all, :id, :name ), class: 'form-control'
 
   .form-inputs
-    = select_tag :tag_id, options_from_collection_for_select( ActsAsTaggableOn::Tag.all, :id, :name ), multiple: true
+    = select_tag :tag_id, options_from_collection_for_select( ActsAsTaggableOn::Tag.all, :id, :name ), multiple: true, class: 'form-control'
 
   .form-actions
     = f.button :submit, class: :'btn-default'
