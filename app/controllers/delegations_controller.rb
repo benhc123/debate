@@ -15,6 +15,7 @@ class DelegationsController < ApplicationController
   # GET /delegations/new
   def new
     @delegation = Delegation.new
+    @delegation.delegation_entries.build
   end
 
   # GET /delegations/1/edit
@@ -24,7 +25,7 @@ class DelegationsController < ApplicationController
   # POST /delegations
   # POST /delegations.json
   def create
-    @delegation = Delegation.new(delegation_params)
+    @delegation = Delegation.new(delegation_params.merge(voter: current_user))
 
     respond_to do |format|
       if @delegation.save
@@ -69,6 +70,7 @@ class DelegationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def delegation_params
-      params.require(:delegation).permit(:voter_id)
+      params.require(:delegation).permit(
+        delegation_entries_attributes: [ :position, :delegate_type, :delegate_id ], tag_list: [])
     end
 end
