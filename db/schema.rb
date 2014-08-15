@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140803193216) do
+ActiveRecord::Schema.define(version: 20140814231251) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,16 @@ ActiveRecord::Schema.define(version: 20140803193216) do
   end
 
   add_index "delegation_entries", ["delegation_id"], name: "index_delegation_entries_on_delegation_id", using: :btree
+
+  create_table "delegation_entries_delegations", force: true do |t|
+    t.integer  "delegation_id"
+    t.integer  "delegation_entry_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delegation_entries_delegations", ["delegation_entry_id"], name: "index_delegation_entries_delegations_on_delegation_entry_id", using: :btree
+  add_index "delegation_entries_delegations", ["delegation_id"], name: "index_delegation_entries_delegations_on_delegation_id", using: :btree
 
   create_table "delegations", force: true do |t|
     t.integer  "voter_id"
