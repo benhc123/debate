@@ -21,6 +21,7 @@ gem 'figaro'
 
 gem 'acts_as_votable'
 gem 'acts-as-taggable-on'
+gem 'acts_as_list'
 gem 'paper_trail', '3.0.3'
 gem 'browser-timezone-rails'
 gem 'redcarpet', '3.1.2'

@@ -1,0 +1,25 @@
+%h1 Listing delegation_entries
+
+%table
+  %tr
+    %th Delegation
+    %th Delegate type
+    %th Delegate
+    %th Position
+    %th
+    %th
+    %th
+
+  - @delegation_entries.each do |delegation_entry|
+    %tr
+      %td= delegation_entry.delegation
+      %td= delegation_entry.delegate_type
+      %td= delegation_entry.delegate_id
+      %td= delegation_entry.position
+      %td= link_to 'Show', delegation_entry
+      %td= link_to 'Edit', edit_delegation_entry_path(delegation_entry)
+      %td= link_to 'Destroy', delegation_entry, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Delegation entry', new_delegation_entry_path
