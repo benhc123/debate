@@ -53,3 +53,13 @@ If you change anything, it has to be precompiled before it is sent to Heroku.
 - `RAILS_ENV=production rake assets:precompile`
 - `git add -A`
 - `git push heroku master`
+
+## Loading bills from the Sunlight Foundation
+
+To load bills from the Congress API:
+
+* Get a key for the [Congress API](http://tryit.sunlightfoundation.com/congress) and put it in `config/application.yml` as `SUNLIGHT_KEY`.
+* `rails c`
+* `Issue.load_bills`
+
+This will create `Issue`s and associated `Tag`s for the first ten bills retrieved having keywords.
