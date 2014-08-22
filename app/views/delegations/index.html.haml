@@ -1,15 +1,25 @@
 %h1 Listing delegations
 
-%table
+%table{border: 1}
   %tr
-    %th Voter
+    %th #
+    %th Delegates
+    %th Tags
     %th
     %th
     %th
 
-  - @delegations.each do |delegation|
+  - @delegations.each_with_index do |delegation, index|
     %tr
-      %td= delegation.voter
+      %td= index + 1
+      %td
+        %ol
+          - delegation.delegation_entries.each do |delegation_entry|
+            %li= delegation_entry.delegate.name
+      %td
+        %ul
+          - delegation.tag_list.each do |tag|
+            %li= tag
       %td= link_to 'Show', delegation
       %td= link_to 'Edit', edit_delegation_path(delegation)
       %td= link_to 'Destroy', delegation, :method => :delete, :data => { :confirm => 'Are you sure?' }
