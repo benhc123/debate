@@ -15,7 +15,7 @@
       %td
         %ol
           - delegation.delegation_entries.each do |delegation_entry|
-            %li= delegation_entry.delegate.name
+            %li= delegation_entry.delegate.try(:name)
       %td
         %ul
           - delegation.tag_list.each do |tag|
