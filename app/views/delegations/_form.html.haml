@@ -2,11 +2,7 @@
   = # f.error_notification
 
   = f.fields_for(:delegation_entries) do |builder|
-    %div
-      = builder.hidden_field :delegate_type
-
-      .form-inputs
-        = builder.select :delegate_id, grouped_options_for_select(@grouped_voters), { include_blank: true }, { 'class' => 'form-control delegations' }
+    = render 'delegation_entry_fields', f: builder
 
   .form-inputs
     = f.select :tag_list, options_from_collection_for_select( ActsAsTaggableOn::Tag.all, :name, :name ), {}, {multiple: true, class: 'form-control'}
