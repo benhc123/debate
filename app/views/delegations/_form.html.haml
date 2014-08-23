@@ -1,18 +1,13 @@
-= form_for(@delegation, html: { class: 'form-horizontal' } ) do |f|
+= form_for(@delegation, html: { class: 'form-horizontal delegations-form' } ) do |f|
   = # f.error_notification
 
-  = f.fields_for(:delegation_entries) do |builder|
-    .form-inputs
-      = builder.select :delegate_type, options_for_select( ['User', 'Organization'] ), class: 'form-control'
-
-    .form-inputs
-      = builder.select :delegate_id, options_from_collection_for_select( User.all, :id, :display ), class: 'form-control'
-
-    .form-inputs
-      = builder.select :delegate_id, options_from_collection_for_select( Organization.all, :id, :name ), class: 'form-control'
+  .delegation-entries
+    = link_to_add_fields "Add delegation entry", f, :delegation_entries
+    = f.fields_for(:delegation_entries) do |builder|
+      = render 'delegation_entry_fields', f: builder
 
   .form-inputs
     = f.select :tag_list, options_from_collection_for_select( ActsAsTaggableOn::Tag.all, :name, :name ), {}, {multiple: true, class: 'form-control'}
 
   .form-actions
-    = f.button :submit, class: :'btn-default'
+    = f.button :submit, class: :'btn btn-primary'
