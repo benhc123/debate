@@ -52,6 +52,7 @@ If you change anything, it has to be precompiled before it is sent to Heroku.
 
 - `RAILS_ENV=production rake assets:precompile`
 - `git add -A`
+- `git commit -m 'compiled assets'`
 - `git push heroku master`
 
 ## Loading bills from the Sunlight Foundation
