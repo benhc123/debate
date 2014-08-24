@@ -16,6 +16,18 @@ class DelegationsController < ApplicationController
   def new
     @delegation = Delegation.new
     @delegation.delegation_entries.build
+
+    @grouped_voters = (User.all.to_a + Organization.all.to_a)
+      .group_by { |voter| voter.class.name }
+      .map { |class_name, voters| [class_name, voters.map { |voter| [voter.display, voter.id]}] }
+    #=> [
+    #     ["User", [
+    #       ["Congress", 2], ["Will", 1]
+    #     ]],
+    #     ["Organization", [
+    #       ["Library of Congress", 1]
+    #     ]]
+    #   ]
   end
 
   # GET /delegations/1/edit
