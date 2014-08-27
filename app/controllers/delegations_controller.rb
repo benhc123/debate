@@ -72,7 +72,7 @@ class DelegationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def delegation_params
       params.require(:delegation).permit(
-        delegation_entries_attributes: [ :position, :delegate_type, :delegate_id ], tag_list: [])
+        delegation_entries_attributes: [ :position, :delegate_type, :delegate_id, :id ], tag_list: [])
     end
 
     def set_grouped_voters
