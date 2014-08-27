@@ -2,4 +2,4 @@
   = f.hidden_field :delegate_type
 
   .form-inputs
-    = f.select :delegate_id, grouped_options_for_select(@grouped_voters), { include_blank: true }, { 'class' => 'form-control delegations' }
+    = f.select :delegate_id, grouped_options_for_select(@grouped_voters, f.object.delegate_id), { include_blank: true }, { 'class' => 'form-control delegations' }
