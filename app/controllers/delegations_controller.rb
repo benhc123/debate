@@ -1,5 +1,6 @@
 class DelegationsController < ApplicationController
   before_action :set_delegation, only: [:show, :edit, :update, :destroy]
+  before_action :set_grouped_voters, only: [:new, :edit]
 
   # GET /delegations
   # GET /delegations.json
@@ -16,18 +17,6 @@ class DelegationsController < ApplicationController
   def new
     @delegation = Delegation.new
     @delegation.delegation_entries.build
-
-    @grouped_voters = (User.all.to_a + Organization.all.to_a)
-      .group_by { |voter| voter.class.name }
-      .map { |class_name, voters| [class_name, voters.map { |voter| [voter.display, voter.id]}] }
-    #=> [
-    #     ["User", [
-    #       ["Congress", 2], ["Will", 1]
-    #     ]],
-    #     ["Organization", [
-    #       ["Library of Congress", 1]
-    #     ]]
-    #   ]
   end
 
   # GET /delegations/1/edit
@@ -83,6 +72,20 @@ class DelegationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def delegation_params
       params.require(:delegation).permit(
-        delegation_entries_attributes: [ :position, :delegate_type, :delegate_id ], tag_list: [])
+        delegation_entries_attributes: [ :position, :delegate_type, :delegate_id, :id ], tag_list: [])
+    end
+
+    def set_grouped_voters
+      @grouped_voters = Voter.all
+        .group_by { |voter| voter.type }
+        .map { |type, voters| [type, voters.map { |voter| [voter.display, voter.id]}] }
+      #=> [
+      #     ["User", [
+      #       ["Congress", 2], ["Will", 1]
+      #     ]],
+      #     ["Organization", [
+      #       ["Library of Congress", 1]
+      #     ]]
+      #   ]
     end
 end

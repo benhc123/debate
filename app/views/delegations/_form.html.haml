@@ -1,3 +1,4 @@
+
 = form_for(@delegation, html: { class: 'form-horizontal delegations-form' } ) do |f|
   = # f.error_notification
 
@@ -7,7 +8,7 @@
       = render 'delegation_entry_fields', f: builder
 
   .form-inputs
-    = f.select :tag_list, options_from_collection_for_select( ActsAsTaggableOn::Tag.all, :name, :name ), {}, {multiple: true, class: 'form-control'}
+    = f.select :tag_list, options_from_collection_for_select( ActsAsTaggableOn::Tag.all, :name, :name, @delegation.tag_list ), {}, {multiple: true, class: 'form-control'}
 
   .form-actions
     = f.button :submit, class: :'btn btn-primary'
