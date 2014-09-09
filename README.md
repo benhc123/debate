@@ -16,8 +16,6 @@ Development information is spread out over a few services:
 * [Github Repo](https://github.com/TheFuturistParty/debate/)
 * [Futurist Party Slack](https://futuristparty.slack.com/messages/web-dev/) ([e-mail me](mailto:Will%20Holcomb%20%3Cwill+slack@dhappy.org%3E) for an invite)
 
-If you're interested in paid development, [estimate and rate hours](https://crwdfund.herokuapp.com) then [e-mail me](mailto:Will%20Holcomb%20%3Cwill+work@dhappy.org%3E) since I never look at that site.
-
 Installation
 ------------
 
