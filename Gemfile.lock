@@ -258,7 +258,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   launchy
-  paper_trail (= 3.0.3)
+  paper_trail
   pg
   pry
   pry-nav
