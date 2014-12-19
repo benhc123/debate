@@ -1,19 +1,35 @@
-Debate [![tip for next commit](http://tip4commit.com/projects/827.svg)](http://tip4commit.com/projects/827) [![Codeship Status](https://www.codeship.io/projects/0b2a3570-0fc8-0132-0248-129d6db6c348/status)](https://www.codeship.io/projects/32717)
+# [The  Futurist Party](//reddit.com/r/futuristparty) Voting Interface
+
+[![tip for next commit](http://tip4commit.com/projects/827.svg)](http://tip4commit.com/projects/827) [![Codeship Status](https://www.codeship.io/projects/0b2a3570-0fc8-0132-0248-129d6db6c348/status)](https://www.codeship.io/projects/32717)
 ======
 
-The goal of this system is to codify rational discourse and allow polling on issues.
+# Improvements
 
-Users should be able to [proxy their vote](https://www.youtube.com/watch?v=fg0_Vhldz-8) either to an individual or organization.
+## Term Length
 
-Identity will be verified via postal mail sent to their name and address as registered with the election commission.
+| *Current* | *New* |
+|-----------|-------|
+| Fixed terms, 2-8 years | At-will terms |
 
-Participation
--------------
+## Election Process
+
+| *Current* | *New* |
+|-----------|-------|
+| Nomination then election | Any account can proxy. Elegibility verification using election commission rolls. |
+
+## Granularity
+
+| *Current* | *New* |
+|-----------|-------|
+| One delegate for all issues | Proxy right can be allotted topically based on keywords assigned by organizations.  |
+
+
+# Participation
 
 Development information is spread out over a few services:
 
 * [Development Listserv](https://groups.google.com/forum/#!forum/debate-dev/)
-* [Github Repo](https://github.com/TheFuturistParty/debate/)
+* [Github Repo](https://github.com/TheFuturistParty/vote/)
 * [Futurist Party Slack](https://futuristparty.slack.com/messages/web-dev/) ([e-mail me](mailto:Will%20Holcomb%20%3Cwill+slack@dhappy.org%3E) for an invite)
 
 Installation
