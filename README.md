@@ -9,19 +9,19 @@
 
 | *Current* | *New* |
 |-----------|-------|
-| Fixed terms, 2-8 years | At-will terms |
+| Fixed terms, 2-8 years. | At-will electronically-delegated terms. |
 
 ## Election Process
 
 | *Current* | *New* |
 |-----------|-------|
-| Nomination then election | Any account can proxy. Elegibility verification using election commission rolls. |
+| Nomination then election. | Any account can proxy. Elegibility verification using election commission rolls. |
 
 ## Granularity
 
 | *Current* | *New* |
 |-----------|-------|
-| One delegate for all issues | Proxy right can be allotted topically based on keywords assigned by organizations.  |
+| One delegate for all issues. | Proxy rights can be allotted topically based on keywords assigned by organizations.  |
 
 
 # Participation
