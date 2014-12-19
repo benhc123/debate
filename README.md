@@ -15,7 +15,7 @@
 
 | *Current* | *New* |
 |-----------|-------|
-| Nomination then election. | Any account can proxy. Elegibility verification using election commission rolls. |
+| Nomination then election. | Any account can proxy. [Elegibility verification using election commission rolls.](#identity-verification) |
 
 ## Granularity
 
@@ -23,6 +23,14 @@
 |-----------|-------|
 | One delegate for all issues. | Proxy rights can be allotted topically based on keywords assigned by organizations.  |
 
+# Identity Verification
+
+1. User creates account
+2. User enters registered voting address
+3. Address is verified against election commission records
+4. Code is sent to user via postal mail
+5. User enters code into application
+6. Account is verified
 
 # Participation
 
