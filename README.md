@@ -7,19 +7,19 @@
 
 ## Term Length
 
-| *Current* | *New* |
+| _Current_ | _New_ |
 |-----------|-------|
 | Fixed terms, 2-8 years. | At-will electronically-delegated terms. |
 
 ## Election Process
 
-| *Current* | *New* |
+| _Current_ | _New_ |
 |-----------|-------|
 | Nomination then election. | Any account can proxy. [Elegibility verification using election commission rolls.](#identity-verification) |
 
 ## Granularity
 
-| *Current* | *New* |
+| _Current_ | _New_ |
 |-----------|-------|
 | One delegate for all issues. | Proxy rights can be allotted topically based on keywords assigned by organizations.  |
 
