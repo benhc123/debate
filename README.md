@@ -30,7 +30,7 @@
 3. Address is verified against election commission records
 4. Code is sent to user via postal mail
 5. User enters code into application
-6. Account is verified
+6. Account is verified. A new account cannot be created without falsifying election commission records.
 
 # Participation
 
