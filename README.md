@@ -40,7 +40,7 @@ Development information is spread out over a few services:
 
 * [Development Listserv](https://groups.google.com/forum/#!forum/debate-dev/)
 * [Github Repo](https://github.com/TheFuturistParty/vote/)
-* [Futurist Party Slack](https://futuristparty.slack.com/messages/web-dev/) ([e-mail me](mailto:Will%20Holcomb%20%3Cwill+slack@dhappy.org%3E) for an invite)
+* [Futurist Party Slack](https://futuristparty.slack.com/messages/web-dev/)
 
 Installation
 ------------
