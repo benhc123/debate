@@ -29,6 +29,18 @@
 |-----------|-------|
 | Single proxy for votes. | Percentages of a vote may be allocated to multiple parties.  |
 
+## Overidability
+
+| _Electoral_ | _Topical_ |
+|-----------|-------|
+| Elected proxy votes all issues. | User may cast a direct ballot on any issue. |
+
+## Voters
+
+| _Electoral_ | _Topical_ |
+|-----------|-------|
+| Only elected proxy votes on issues. | All users may vote on all issues. |
+
 
 # Identity Verification
 
