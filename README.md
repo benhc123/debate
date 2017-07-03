@@ -41,7 +41,7 @@
 |-----------|-------|
 | Only elected proxy votes on issues. | All users may vote on all issues. |
 
-# Chaining
+## Chaining
 | _Electoral_ | _Topical_ |
 |-----------|-------|
 | A proxy must directly cast a ballot. | A proxy may in turn proxy to someone else. |
