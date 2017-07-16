@@ -5,47 +5,15 @@
 
 # Improvements
 
-## Term Length
-
-| _Electoral_ | _Topical_ |
-|-----------|-------|
-| Fixed terms, 2-8 years. | At-will electronically-delegated terms. |
-
-## Election Process
-
-| _Electoral_ | _Topical_ |
-|-----------|-------|
-| Nomination then election. | Any account can proxy. [Elegibility verification using election commission rolls.](#identity-verification) |
-
-## Granularity
-
-| _Electoral_ | _Topical_ |
-|-----------|-------|
-| One delegate for all issues. | Proxy rights can be allotted topically based on keywords assigned by organizations.  |
-
-## Divisibility
-
-| _Electoral_ | _Topical_ |
-|-----------|-------|
-| Single proxy for votes. | Percentages of a vote may be allocated to multiple parties.  |
-
-## Overidability
-
-| _Electoral_ | _Topical_ |
-|-----------|-------|
-| Elected proxy votes all issues. | User may cast a direct ballot on any issue. |
-
-## Voters
-
-| _Electoral_ | _Topical_ |
-|-----------|-------|
-| Only elected proxy votes on issues. | All users may vote on all issues. |
-
-## Chaining
-| _Electoral_ | _Topical_ |
-|-----------|-------|
-| A proxy must directly cast a ballot. | A proxy may in turn proxy to someone else. |
-
+|| _Electoral_ | _Topical_ |
+|-|-----------|-------|
+| Term Length | Fixed terms, 2-8 years. | At-will electronically-delegated terms. |
+| Election Process | Nomination then election. | Any account can proxy. [Elegibility verification using election commission rolls.](#identity-verification) |
+| Granularity | One delegate for all issues. | Proxy rights can be allotted topically based on keywords assigned by organizations.  |
+| Divisibility | Single proxy for votes. | Percentages of a vote may be allocated to multiple parties.  |
+| Overidability | Elected proxy votes all issues. | User may cast a direct ballot on any issue. |
+| Voters | Only elected proxy votes on issues. | All users may vote on all issues. |
+| Chaining | A proxy must directly cast a ballot. | A proxy may in turn proxy to someone else. |
 
 # Identity Verification
 
