@@ -7,7 +7,7 @@
 
 || _Electoral_ | _Topical_ |
 |-|-----------|-------|
-| _Term Length_ | Fixed terms, 2-8 years. | At-will electronically-delegated terms. |
+| *Term Length* | Fixed terms, 2-8 years. | At-will electronically-delegated terms. |
 | _Election Process_ | Nomination then election. | Any account can proxy. [Elegibility verification using election commission rolls.](#identity-verification) |
 | _Granularity_ | One delegate for all issues. | Proxy rights can be allotted topically based on keywords assigned by organizations.  |
 | _Divisibility_ | Single proxy for votes. | Percentages of a vote may be allocated to multiple parties.  |
