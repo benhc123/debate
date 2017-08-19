@@ -30,8 +30,8 @@ A Sybil account cannot be created without falsifying election commission records
 
 Development information is spread out over a few services:
 
+* GitHub repo
 * [Development Listserv](https://groups.google.com/forum/#!forum/debate-dev/)
-* [Github Repo](https://github.com/TheFuturistParty/vote/)
 * [Futurist Party Slack](https://futuristparty.slack.com/messages/web-dev/)
 
 ## Loading bills from the Sunlight Foundation
