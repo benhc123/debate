@@ -1,6 +1,9 @@
 # [The  Futurist Party](//reddit.com/r/futuristparty) Voting Interface
 
-[![tip for next commit](http://tip4commit.com/projects/827.svg)](http://tip4commit.com/projects/827) [![Codeship Status](https://www.codeship.io/projects/0b2a3570-0fc8-0132-0248-129d6db6c348/status)](https://www.codeship.io/projects/32717)
+[![tip for next commit](http://tip4commit.com/projects/827.svg)](http://tip4commit.com/projects/827) 
+[![GitHub issues](https://img.shields.io/github/issues/TheFuturistParty/vote.svg)](https://github.com/TheFuturistParty/vote/issues)
+[![GitHub forks](https://img.shields.io/github/forks/TheFuturistParty/vote.svg)](https://github.com/TheFuturistParty/vote/network)
+[![GitHub stars](https://img.shields.io/github/stars/TheFuturistParty/vote.svg)](https://github.com/TheFuturistParty/vote/stargazers)
 ======
 
 # Improvements
