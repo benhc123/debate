@@ -41,7 +41,7 @@ Development information is spread out over a few services:
 
 To load bills from the Congress API:
 
-* Get a key for the [Congress API](http://tryit.sunlightfoundation.com/congress) and put it in `config/application.yml` as `SUNLIGHT_KEY`.
+* Get a key for the [Congress API](http://services.sunlightlabs.com/accounts/register/) and put it in `config/application.yml` as `SUNLIGHT_KEY`.
 * `rails c`
 * `Issue.load_bills`
 
